@@ -99,6 +99,23 @@ const negocio = {
     <title>{s.titulo}</title>
     <meta name="description" content={s.descripcion} />
     <link rel="canonical" href={canonica} />
+    <!-- Precargadas: son dos peticiones y 74 KB, y sin esto el titular grande
+         parpadea al cambiar de la fuente de respaldo a Archivo. -->
+    <link
+      rel="preload"
+      href="/fonts/archivo-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/literata-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -119,15 +136,15 @@ const negocio = {
     <script type="application/ld+json" set:html={JSON.stringify(negocio)} is:inline />
 
     <meta name="author" content="Daniel Morán Vílchez" />
-    <meta name="theme-color" content="#1b4965" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1420" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#101820" media="(prefers-color-scheme: dark)" />
   </head>
 
   <body>
     <a
       href="#contenido"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:px-4 focus:py-2"
-      style="background: var(--marca); color: var(--fondo);"
+      class="etiqueta sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:px-4 focus:py-3"
+      style="background: var(--senal); color: var(--color-tinta-claro);"
     >
       Saltar al contenido
     </a>
@@ -135,12 +152,12 @@ const negocio = {
     <Nav />
     <main id="contenido"><slot /></main>
 
-    <footer style="border-color: var(--borde);" class="border-t">
+    <footer style="border-top: 1px solid var(--linea);">
       <div
-        class="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-10 text-sm sm:flex-row sm:items-center sm:justify-between"
-        style="color: var(--texto-suave);"
+        class="mx-auto flex max-w-[var(--container-ficha)] flex-col gap-4 px-6 py-10 text-[0.8125rem] sm:flex-row sm:items-center sm:justify-between"
+        style="color: var(--tinta2);"
       >
-        <p>© {new Date().getFullYear()} {s.pieDerechos}</p>
+        <p class="rotulo text-[1.0625rem]" style="color: var(--tinta);">Djasoft</p>
         <nav class="flex flex-wrap gap-x-5 gap-y-2">
           <a class="hover:underline" href={PERFIL_TECNICO} target="_blank" rel="noopener noreferrer">
             {s.piePerfil}

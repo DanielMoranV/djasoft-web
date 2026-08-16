@@ -1,74 +1,292 @@
 @import 'tailwindcss';
 
 /*
-  Paleta. Se define entera en claro y se redefine en oscuro, para que ningun
-  color exista solo dentro de una media query.
+  Direccion visual «Rotulo».
 
-  Azul profundo como color de marca -serio, no de startup- y ambar para lo que
-  hay que pulsar. El fondo no es blanco puro: cansa menos en pantalla.
+  La identidad sale de invertir la relacion tipografica del perfil tecnico:
+  alli la serif esta arriba y la mono en los metadatos; aqui la grotesca pesada
+  manda en titulares y rotulos, y la serif se queda abajo, en la prosa. Basta
+  esa inversion para que nadie confunda los dos sitios teniendo el mismo autor.
+
+  Cuatro formas distintas repartidas por la pagina —banda azul a sangre,
+  columna de prosa estrecha, indice tabular a ancho completo, ficha con regla
+  superior— para que ninguna seccion se parezca a la anterior. Ese era el
+  diagnostico: no la paleta, sino que todo tenia la misma forma.
+
+  Esquina viva en todo el sitio. El radio cero es lo que mas aleja la pagina
+  de la plantilla que era.
 */
+
+/* --------- fuentes autoalojadas, subconjunto latin ---------
+   Solo `latin`: se comprobo caracter a caracter que cubre todo el copy
+   —tildes, ñ, ¿ ¡, comillas angulares, rayas—, asi que latin-ext sobraba y
+   habria costado 103 KB mas. Total real: 74 KB en dos peticiones.
+
+   OJO: la flecha → (U+2192) NO esta en este subconjunto. Por eso el sitio la
+   dibuja en SVG (componente Flecha.astro) en vez de escribirla como texto: si
+   no, cae a una fuente del sistema y desentona justo en el gesto mas repetido
+   de la pagina. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-latin.woff2') format('woff2-variations');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Literata';
+  src: url('/fonts/literata-latin.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @theme {
-  --color-tinta: #0d1b2a;
-  --color-tinta-suave: #415a77;
-  --color-papel: #fbfaf7;
-  --color-papel-hondo: #f2efe9;
-  --color-borde: #e3ded4;
-  --color-marca: #1b4965;
-  --color-acento: #c8873a;
+  --font-rotulo: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-prosa: 'Literata', Georgia, 'Times New Roman', serif;
+
+  /* Paleta cruda: los dos modos existen siempre, fuera de toda media query. */
+  --color-papel-claro: #f7f2e9;
+  --color-papel2-claro: #fffcf6;
+  --color-tinta-claro: #14202b;
+  --color-tinta2-claro: #4a5560;
+  --color-marca-claro: #1b4965;
+  --color-marca-honda-claro: #123449;
+  --color-senal-claro: #c8873a;
+  --color-senal-txt-claro: #8f5310;
+  --color-linea-claro: #ded6c6;
+  --color-sobre-marca-claro: #f7f2e9;
+
+  --color-papel-oscuro: #101820;
+  --color-papel2-oscuro: #18242e;
+  --color-tinta-oscuro: #ede6d9;
+  --color-tinta2-oscuro: #8a97a1;
+  --color-marca-oscuro: #86b9d6;
+  --color-marca-honda-oscuro: #0c2430;
+  --color-senal-oscuro: #e0a75e;
+  --color-senal-txt-oscuro: #e0a75e;
+  --color-linea-oscuro: #2c3a46;
+  --color-sobre-marca-oscuro: #ede6d9;
+
+  /* Escala tipografica: pasos declarados, no un tamaño por capricho. */
+  --text-rotulo: clamp(2.75rem, 8vw, 6rem);
+  --text-rotulo--line-height: 0.95;
+  --text-seccion: clamp(2rem, 4.5vw, 3.25rem);
+  --text-seccion--line-height: 1.02;
+  --text-ficha: 1.5rem;
+  --text-ficha--line-height: 1.15;
+  --text-prosa: clamp(1.125rem, 1.6vw, 1.3125rem);
+  --text-prosa--line-height: 1.62;
+  --text-marca: 0.8125rem;
+  --text-marca--line-height: 1.2;
+
+  /* Un ancho por tipo de contenido. Se acabo el max-w-5xl para todo. */
+  --container-prosa: 38rem;
+  --container-ficha: 72rem;
+  --container-corto: 46rem;
+
+  --radius-*: initial;
 }
 
+/* Tokens semanticos: claro por defecto. */
 :root {
-  --fondo: var(--color-papel);
-  --fondo-hondo: var(--color-papel-hondo);
-  --texto: var(--color-tinta);
-  --texto-suave: var(--color-tinta-suave);
-  --borde: var(--color-borde);
-  --marca: var(--color-marca);
-  --acento: var(--color-acento);
+  color-scheme: light dark;
+  --papel: var(--color-papel-claro);
+  --papel2: var(--color-papel2-claro);
+  --tinta: var(--color-tinta-claro);
+  --tinta2: var(--color-tinta2-claro);
+  --marca: var(--color-marca-claro);
+  --marca-honda: var(--color-marca-honda-claro);
+  --senal: var(--color-senal-claro);
+  --senal-txt: var(--color-senal-txt-claro);
+  --linea: var(--color-linea-claro);
+  --sobre-marca: var(--color-sobre-marca-claro);
+
+  /*
+    Superficie de las bandas a sangre, separada de --marca a proposito.
+
+    --marca hace doble trabajo: en claro es un azul profundo que sirve de
+    fondo, pero en oscuro es un azul CLARO pensado para leerse como texto
+    sobre papel oscuro. Usarla de fondo funcionaba en claro y en oscuro daba
+    crema sobre azul claro: 1.71:1, ilegible, con la etiqueta ambar a 1.01:1.
+    La banda necesita su propio token, que en ambos modos es oscuro.
+  */
+  --banda: var(--color-marca-claro);
+
+  /*
+    Ambar para lo que va ENCIMA de una banda oscura.
+
+    El ambar de marca #c8873a sobre el azul de banda da 3.19:1. La direccion
+    lo daba por bueno llamandolo «AA de componente», pero ese umbral de 3:1 es
+    para objetos graficos, no para texto: un rotulo de 13 px en negrita sigue
+    siendo texto y necesita 4.5:1. Con el ambar claro sube a 5.9:1.
+  */
+  --senal-banda: var(--color-senal-oscuro);
+
+  /* Ritmo vertical en tres pesos. */
+  --paso-seccion: 5rem;
+  --paso-respiro: 8rem;
 }
 
+/* El modo oscuro solo reasigna tokens ya definidos arriba. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --fondo: #0b1420;
-    --fondo-hondo: #111e2e;
-    --texto: #eef2f6;
-    --texto-suave: #9fb3c8;
-    --borde: #1e3148;
-    --marca: #7fb2d4;
-    --acento: #e0a458;
+    --papel: var(--color-papel-oscuro);
+    --papel2: var(--color-papel2-oscuro);
+    --tinta: var(--color-tinta-oscuro);
+    --tinta2: var(--color-tinta2-oscuro);
+    --marca: var(--color-marca-oscuro);
+    --marca-honda: var(--color-marca-honda-oscuro);
+    --senal: var(--color-senal-oscuro);
+    --senal-txt: var(--color-senal-txt-oscuro);
+    --linea: var(--color-linea-oscuro);
+    --sobre-marca: var(--color-sobre-marca-oscuro);
+    --banda: #17303f;
   }
 }
 
-html {
-  scroll-behavior: smooth;
-  /* Que el ancla no quede pegada bajo la barra fija. */
-  scroll-padding-top: 5rem;
-}
-
-body {
-  background: var(--fondo);
-  color: var(--texto);
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-wrap: pretty;
-}
-
-h1, h2, h3 {
-  text-wrap: balance;
-  letter-spacing: -0.02em;
-}
-
-/* Foco visible de verdad: se navega con teclado. */
-:focus-visible {
-  outline: 2px solid var(--acento);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+@media (min-width: 768px) {
+  :root {
+    --paso-seccion: 7rem;
+    --paso-respiro: 11rem;
   }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--font-prosa);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-wrap: pretty;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-rotulo);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  a {
+    color: var(--senal-txt);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--senal-txt);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------- utilidades */
+
+@utility prosa {
+  max-width: var(--container-prosa);
+  font-size: var(--text-prosa);
+  line-height: 1.62;
+}
+
+/* Etiqueta en caja alta: 13 px / 700. AA de componente incluso en ambar
+   sobre azul, que a texto corrido no llegaria. */
+@utility etiqueta {
+  font-family: var(--font-rotulo);
+  font-size: var(--text-marca);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: var(--text-marca--line-height);
+}
+
+@utility rotulo {
+  font-family: var(--font-rotulo);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* ---------------------------------------------------------------- piezas */
+
+/*
+  La barra empieza transparente sobre el hero y se vuelve una banda azul
+  compacta al desplazar. Se hace con scroll-driven animation, sin una linea de
+  JavaScript. Donde el navegador no la soporta —Safari y Firefox hoy— queda la
+  version solida de siempre, que es legible y correcta: la transparencia es
+  mejora, no requisito.
+*/
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--papel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--linea);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .barra {
+      animation: barra-fija linear both;
+      animation-timeline: scroll();
+      animation-range: 0 12rem;
+    }
+
+    @keyframes barra-fija {
+      from {
+        background: transparent;
+        backdrop-filter: blur(0px);
+        border-bottom-color: transparent;
+      }
+      to {
+        /* --banda y no --marca: en oscuro --marca es color de texto, no
+           superficie, y la barra quedaria ilegible. */
+        background: color-mix(in srgb, var(--papel) 92%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom-color: var(--linea);
+      }
+    }
+  }
+}
+
+/* Los enlaces de seccion se deslizan en movil en vez de esconderse: el
+   telefono es justo donde llega quien pincha desde WhatsApp. */
+.barra-enlaces {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.barra-enlaces::-webkit-scrollbar {
+  display: none;
+}
+
+.barra-enlaces > a {
+  white-space: nowrap;
 }

@@ -21,6 +21,14 @@ export const s = {
     'Djasoft — Software de gestión que ya está funcionando. ERPs, planillas, facturación ' +
     'electrónica SUNAT y automatización. Daniel Morán Vílchez, Piura, Perú.',
 
+  /* Repetido por todo el sitio: el gesto de abrir algo real. */
+  abrir: 'Abrir',
+
+  indiceEtiqueta: 'sistemas en producción',
+  indiceTitulo: 'Cada enlace abre el producto real, no una captura.',
+  bandaClientes: 'Empresas que lo pagaron y lo siguen usando',
+  bandaProductos: 'Productos propios',
+
   navQueResuelvo: 'Qué resuelvo',
   navServicios: 'Por qué contratarme',
   navClientes: 'Casos',
@@ -135,6 +143,7 @@ export const s = {
     'región —Sullana, Piura y alrededores— y con el resto del Perú en remoto. Cuando hay ' +
     'que estar delante del sistema, se está.',
 
-  piePerfil: 'Perfil técnico',
+  /* Etiquetado asi a proposito: deja claro que es otro publico y otro sitio. */
+  piePerfil: 'Perfil técnico (para reclutadores)',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',
 } as const;

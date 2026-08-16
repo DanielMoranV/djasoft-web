@@ -1,0 +1,61 @@
+---
+/**
+ * Ficha sin logotipo: al irse la marca a la banda, queda rubro, nombre,
+ * cliente, texto y pila. Regla gruesa arriba en vez de caja completa — es lo
+ * que separa esta direccion de la rejilla de tarjetas identicas que habia.
+ */
+import type { Producto } from '../data/productos';
+import { s } from '../textos';
+import Flecha from './Flecha.astro';
+
+interface Props {
+  producto: Producto;
+}
+const { producto } = Astro.props;
+---
+
+<article class="pt-5" style="border-top: 2px solid var(--tinta);">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <p class="etiqueta" style="color: var(--senal-txt);">{producto.es.que}</p>
+    {
+      producto.nota && (
+        <span class="etiqueta" style="color: var(--tinta2);">
+          {producto.nota}
+        </span>
+      )
+    }
+  </div>
+
+  <h3 class="mt-2" style="font-size: var(--text-ficha); line-height: 1.15;">
+    {producto.nombre}
+  </h3>
+
+  {
+    producto.cliente && (
+      <p class="text-[0.9375rem]" style="color: var(--tinta2);">
+        {producto.cliente}
+      </p>
+    )
+  }
+
+  <p class="mt-3 text-[1rem] leading-[1.6]">{producto.es.detalle}</p>
+
+  <ul class="mt-4 flex flex-wrap gap-2 text-[0.75rem]" style="color: var(--tinta2);">
+    {producto.stack.map((tec) => <li class="px-2 py-1" style="border: 1px solid var(--linea);">{tec}</li>)}
+  </ul>
+
+  {
+    producto.url && (
+      <a
+        href={producto.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="etiqueta mt-5 inline-flex items-center gap-1.5 underline decoration-[3px] underline-offset-[6px]"
+        style="color: var(--tinta); text-decoration-color: var(--senal);"
+      >
+        {s.abrir} {producto.nombre}
+        <Flecha />
+      </a>
+    )
+  }
+</article>

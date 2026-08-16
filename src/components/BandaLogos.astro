@@ -1,0 +1,46 @@
+---
+/**
+ * Contiene los logotipos, que es el problema practico de esta pagina: son
+ * ocho marcas a todo color —escudos, degradados, ilustraciones— de estilos
+ * incompatibles entre si, metidas en un sitio que quiere ser sobrio.
+ *
+ * La solucion es encapsularlos: salen de las fichas y se agrupan en franja
+ * propia, cada uno en su cuadro de 96 px sobre blanco. A color, porque en un
+ * sitio comercial el logotipo del cliente es prueba social y apagarlo la
+ * tira; pero acotados, para que no manden en la composicion.
+ *
+ * Los de cliente y los de producto propio NUNCA van en la misma franja:
+ * implicaria clientes que no son.
+ */
+interface Props {
+  titulo: string;
+  logos: { src: string; alt: string }[];
+}
+const { titulo, logos } = Astro.props;
+---
+
+<div style="background: var(--papel2); border-block: 1px solid var(--linea);">
+  <div class="mx-auto max-w-[var(--container-ficha)] px-6 py-10">
+    <p class="etiqueta" style="color: var(--tinta2);">{titulo}</p>
+    <ul class="mt-6 flex flex-wrap gap-4">
+      {
+        logos.map((l) => (
+          <li
+            class="grid h-24 w-24 shrink-0 place-items-center bg-white p-3"
+            style="border: 1px solid var(--linea);"
+          >
+            <img
+              src={l.src}
+              alt={l.alt}
+              width="96"
+              height="96"
+              loading="lazy"
+              decoding="async"
+              class="max-h-full max-w-full object-contain"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

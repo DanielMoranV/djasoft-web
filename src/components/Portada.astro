@@ -1,21 +1,12 @@
 ---
-import TarjetaProducto from './TarjetaProducto.astro';
+import Ficha from './Ficha.astro';
+import BandaLogos from './BandaLogos.astro';
+import IndiceSistemas from './IndiceSistemas.astro';
+import Flecha from './Flecha.astro';
 import { propios, paraClientes, productos, sectores } from '../data/productos';
 import { s } from '../textos';
 
 const enProduccion = productos.filter((p) => p.url).length;
-
-/*
-  Las metricas cuentan lo resuelto, no la clientela. Contar clientes con la
-  suscripcion recien arrancada juega en contra: la cifra honesta seria pequena
-  y la pagina la pondria en grande. Sistemas vivos y sectores distintos son
-  igual de ciertos, se calculan solos y dicen lo que un comprador quiere saber.
-*/
-const metricas = [
-  { cifra: String(enProduccion), texto: s.metricaProductos },
-  { cifra: String(sectores), texto: s.metricaSectores },
-  { cifra: '500 000+', texto: s.metricaRegistros },
-];
 
 const resuelvo = [
   { titulo: s.r1Titulo, texto: s.r1Texto },
@@ -29,170 +20,175 @@ const servicios = [
   { titulo: s.sv3Titulo, texto: s.sv3Texto },
   { titulo: s.sv4Titulo, texto: s.sv4Texto },
 ];
+
+const logo = (p: (typeof productos)[number]) => ({
+  src: p.iconoSrc,
+  alt: p.cliente ?? p.nombre,
+});
 ---
 
-<!-- Hero -->
-<section class="mx-auto max-w-5xl px-6 pb-16 pt-20 sm:pt-28">
-  <h1 class="max-w-3xl text-4xl font-bold leading-[1.1] sm:text-5xl">
-    {s.heroTitulo}
-  </h1>
-  <p class="mt-6 max-w-2xl text-lg leading-relaxed" style="color: var(--texto-suave);">
-    {s.heroEntrada}
-  </p>
-  <p class="mt-3 max-w-2xl text-sm" style="color: var(--acento);">{s.heroPrueba}</p>
+<!-- 1 · Hero. El titular ocupa la pantalla en movil: es uno de los dos unicos
+     puntos ruidosos de la pagina, el otro es el indice. -->
+<section class="px-6" style="padding-top: var(--paso-seccion); padding-bottom: var(--paso-respiro);">
+  <div class="mx-auto max-w-[var(--container-ficha)]">
+    <h1 class="max-w-[14ch]" style="font-size: var(--text-rotulo); line-height: 0.95;">
+      {s.heroTitulo}
+    </h1>
 
-  <dl class="mt-12 grid gap-8 sm:grid-cols-3">
-    {
-      metricas.map((m) => (
-        <div class="border-l-2 pl-4" style="border-color: var(--acento);">
-          <dt class="text-3xl font-bold tabular-nums">{m.cifra}</dt>
-          <dd class="mt-1 text-sm" style="color: var(--texto-suave);">
-            {m.texto}
-          </dd>
-        </div>
-      ))
-    }
-  </dl>
+    <p class="prosa mt-10">{s.heroEntrada}</p>
+
+    <p class="prosa mt-6 font-semibold" style="color: var(--senal-txt);">{s.heroPrueba}</p>
+
+    <!-- Las metricas dejan de ser tres bloques de cifra grande —el gesto de
+         pitch que el resto del sitio rechaza— y pasan a una linea de datos. -->
+    <dl
+      class="rotulo mt-12 flex flex-wrap items-baseline gap-x-3 gap-y-2 pt-5 text-[0.9375rem] tabular-nums"
+      style="border-top: 1px solid var(--linea); color: var(--tinta2); font-weight: 400;"
+    >
+      <dt class="sr-only">Sistemas</dt>
+      <dd><b style="color: var(--tinta);">{enProduccion}</b> {s.metricaProductos}</dd>
+      <span aria-hidden="true">·</span>
+      <dt class="sr-only">Sectores</dt>
+      <dd><b style="color: var(--tinta);">{sectores}</b> {s.metricaSectores}</dd>
+      <span aria-hidden="true">·</span>
+      <dt class="sr-only">Registros</dt>
+      <dd><b style="color: var(--tinta);">500 000+</b> {s.metricaRegistros}</dd>
+    </dl>
+  </div>
 </section>
 
-<!--
-  Orden deliberado: primero el problema, luego lo que se puede contratar, luego
-  la prueba de que ya se hizo, y al final el catalogo. Antes la pagina ensenaba
-  el catalogo a alguien que todavia no habia reconocido su problema.
--->
+<!-- 2 · Que resuelvo. La unica seccion sin rejilla y sin borde: columna de
+     prosa a 62ch. Aqui es donde la serif hace su trabajo. -->
+<section id="resuelvo" class="scroll-mt-20 px-6" style="padding-bottom: var(--paso-respiro);">
+  <div class="mx-auto max-w-[var(--container-prosa)]">
+    <p class="etiqueta" style="color: var(--senal-txt);">{s.resuelvoTitulo}</p>
+    <p class="prosa mt-4" style="color: var(--tinta2);">{s.resuelvoEntrada}</p>
 
-<!-- Que resuelvo -->
-<section
-  id="resuelvo"
-  class="scroll-mt-20 border-t"
-  style="border-color: var(--borde); background: var(--fondo-hondo);"
->
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.resuelvoTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.resuelvoEntrada}</p>
-
-    <div class="mt-12 space-y-12">
+    <div class="mt-16 flex flex-col gap-16">
       {
         resuelvo.map((r, i) => (
-          <div class="grid gap-4 sm:grid-cols-[3rem_1fr]">
-            <span class="text-3xl font-bold tabular-nums" style="color: var(--acento); opacity: 0.5;">
+          <div>
+            <span class="rotulo block text-[2.5rem] leading-none tabular-nums" style="color: var(--senal-txt);">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h2 class="mt-3" style="font-size: var(--text-seccion); line-height: 1.02;">
+              {r.titulo}
+            </h2>
+            <p class="prosa mt-5">{r.texto}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Por que contratarme. Cuatro filas, no tarjetas: tabular a proposito,
+     para contrastar con el bloque de prosa que viene justo antes. -->
+<section id="servicios" class="scroll-mt-20 px-6" style="padding-bottom: var(--paso-respiro);">
+  <div class="mx-auto max-w-[var(--container-ficha)]">
+    <p class="etiqueta" style="color: var(--senal-txt);">{s.serviciosTitulo}</p>
+    <h2 class="mt-3 max-w-[20ch]" style="font-size: var(--text-seccion); line-height: 1.02;">
+      {s.serviciosEntrada}
+    </h2>
+
+    <div class="mt-12" style="border-top: 1px solid var(--linea);">
+      {
+        servicios.map((sv, i) => (
+          <div
+            class="grid gap-x-8 gap-y-2 py-8 sm:grid-cols-[4rem_1fr]"
+            style="border-bottom: 1px solid var(--linea);"
+          >
+            <span class="rotulo text-[2.5rem] leading-none tabular-nums" style="color: var(--senal-txt);">
               {String(i + 1).padStart(2, '0')}
             </span>
             <div>
-              <h3 class="text-xl font-semibold">{r.titulo}</h3>
-              <p class="mt-3 max-w-2xl leading-relaxed" style="color: var(--texto-suave);">
-                {r.texto}
-              </p>
+              <h3 style="font-size: var(--text-ficha); line-height: 1.15;">{sv.titulo}</h3>
+              <p class="mt-3 max-w-[var(--container-prosa)]">{sv.texto}</p>
             </div>
           </div>
         ))
       }
     </div>
+
+    <a
+      href="#contacto"
+      class="etiqueta mt-10 inline-flex items-center gap-2 px-5 py-4"
+      style="background: var(--senal); color: var(--color-tinta-claro);"
+    >
+      {s.serviciosLlamada}
+      <Flecha />
+    </a>
   </div>
 </section>
 
-<!-- Por que contratarme -->
-<section id="servicios" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.serviciosTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.serviciosEntrada}</p>
+<!-- 4 · Casos de exito. Los logotipos salen de las fichas y se agrupan arriba. -->
+<BandaLogos titulo={s.bandaClientes} logos={paraClientes.map(logo)} />
 
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {
-        servicios.map((sv) => (
-          <div
-            class="rounded-xl border p-6"
-            style="border-color: var(--borde); background: var(--fondo-hondo);"
-          >
-            <h3 class="text-lg font-semibold">{sv.titulo}</h3>
-            <p class="mt-3 text-sm leading-relaxed" style="color: var(--texto-suave);">
-              {sv.texto}
-            </p>
-          </div>
-        ))
-      }
-    </div>
+<section id="clientes" class="scroll-mt-20 px-6" style="padding-block: var(--paso-seccion);">
+  <div class="mx-auto max-w-[var(--container-ficha)]">
+    <p class="etiqueta" style="color: var(--senal-txt);">{s.clientesTitulo}</p>
+    <h2 class="mt-3 max-w-[24ch]" style="font-size: var(--text-seccion); line-height: 1.02;">
+      {s.clientesEntrada}
+    </h2>
 
-    <p class="mt-10 text-sm">
-      <a href="#contacto" class="font-medium hover:underline" style="color: var(--marca);">
-        {s.serviciosLlamada} <span aria-hidden="true">→</span>
-      </a>
-    </p>
-  </div>
-</section>
-
-<!-- Casos de exito -->
-<section
-  id="clientes"
-  class="scroll-mt-20 border-t"
-  style="border-color: var(--borde); background: var(--fondo-hondo);"
->
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.clientesTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.clientesEntrada}</p>
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {paraClientes.map((p) => <TarjetaProducto producto={p} />)}
+    <div class="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
+      {paraClientes.map((p) => <Ficha producto={p} />)}
     </div>
   </div>
 </section>
 
-<!-- Proyectos propios -->
-<section id="productos" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.productosTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.productosEntrada}</p>
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {propios.map((p) => <TarjetaProducto producto={p} />)}
+<!-- 5 · El indice: el momento que ancla el recuerdo de la pagina. -->
+<IndiceSistemas />
+
+<!-- 6 · Proyectos propios, ya en papel y con la descripcion larga. -->
+<BandaLogos titulo={s.bandaProductos} logos={propios.map(logo)} />
+
+<section id="productos" class="scroll-mt-20 px-6" style="padding-block: var(--paso-seccion);">
+  <div class="mx-auto max-w-[var(--container-ficha)]">
+    <p class="etiqueta" style="color: var(--senal-txt);">{s.productosTitulo}</p>
+    <p class="prosa mt-4">{s.productosEntrada}</p>
+
+    <div class="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
+      {propios.map((p) => <Ficha producto={p} />)}
     </div>
   </div>
 </section>
 
-<!-- Contacto -->
+<!-- 7 · Contacto. Segunda y ultima banda a sangre, en azul profundo. -->
 <section
   id="contacto"
-  class="scroll-mt-20 border-t"
-  style="border-color: var(--borde); background: var(--fondo-hondo);"
+  class="scroll-mt-20 px-6"
+  style="background: var(--marca-honda); color: var(--sobre-marca); padding-block: var(--paso-respiro);"
 >
-  <div class="mx-auto max-w-5xl px-6 py-20">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.contactoTitulo}</h2>
-    <p class="mt-3 max-w-xl leading-relaxed" style="color: var(--texto-suave);">
-      {s.contactoEntrada}
-    </p>
-    <p class="mt-3 max-w-xl text-sm leading-relaxed" style="color: var(--texto-suave);">
+  <div class="mx-auto max-w-[var(--container-corto)]">
+    <p class="etiqueta" style="color: var(--senal-banda);">{s.contactoTitulo}</p>
+    <p class="prosa mt-6" style="color: var(--sobre-marca);">{s.contactoEntrada}</p>
+    <p class="mt-4 text-[0.9375rem]" style="color: color-mix(in srgb, var(--sobre-marca) 75%, transparent);">
       {s.contactoAmbito}
     </p>
 
-    <!--
-      WhatsApp primero y en el boton solido: aqui un dueno de empresa escribe por
-      WhatsApp, no manda un correo. El numero es el mismo de la ficha de Google.
-    -->
-    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
-      <a
-        href="https://wa.me/51948860381"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="rounded-full px-6 py-3 font-medium"
-        style="background: var(--marca); color: var(--fondo);"
-      >
-        {s.contactoWhatsapp} {s.contactoTelefono}
-      </a>
-      <a href="tel:+51948860381" class="hover:underline" style="color: var(--texto-suave);">
+    <a
+      href="https://wa.me/51948860381"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="etiqueta mt-10 inline-flex h-14 items-center gap-2 px-7"
+      style="background: var(--color-senal-claro); color: var(--color-tinta-claro);"
+    >
+      {s.contactoWhatsapp} {s.contactoTelefono}
+      <Flecha />
+    </a>
+
+    <p
+      class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.9375rem]"
+      style="color: color-mix(in srgb, var(--sobre-marca) 75%, transparent);"
+    >
+      <a href="tel:+51948860381" style="color: inherit;" class="hover:underline">
         {s.contactoTelefono}
       </a>
-      <a
-        href="mailto:skaan.dmv@gmail.com"
-        class="hover:underline"
-        style="color: var(--texto-suave);"
-      >
+      <a href="mailto:skaan.dmv@gmail.com" style="color: inherit;" class="hover:underline">
         skaan.dmv@gmail.com
       </a>
-      <a href="https://linkedin.com/in/danielmoranv" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--texto-suave);">
-        LinkedIn
-      </a>
-      <a href="https://github.com/DanielMoranV" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--texto-suave);">
-        GitHub
-      </a>
-      <span class="text-sm" style="color: var(--texto-suave);">{s.contactoUbicacion}</span>
-    </div>
+      <span>{s.contactoUbicacion}</span>
+    </p>
   </div>
 </section>

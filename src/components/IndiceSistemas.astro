@@ -1,0 +1,80 @@
+---
+/**
+ * El ancla visual de la pagina: los ocho sistemas en una tabla a ancho
+ * completo sobre banda azul a sangre, cada fila enlazada entera.
+ *
+ * No ilustra la afirmacion «cada enlace abre el producto real»: la ejecuta.
+ * Y es lo unico del sitio donde se ve de golpe que hay ocho cosas abribles.
+ *
+ * Los datos salen de productos.ts, no escritos a mano: si se anade un
+ * producto, entra aqui solo. La pila se recorta a tres piezas porque la fila
+ * es un vistazo, no una ficha tecnica.
+ */
+import { productos } from '../data/productos';
+import { s } from '../textos';
+import Flecha from './Flecha.astro';
+
+const sistemas = productos.filter((p) => p.url);
+---
+
+<section
+  id="sistemas"
+  class="scroll-mt-20"
+  style="background: var(--banda); color: var(--sobre-marca);"
+>
+  <div
+    class="mx-auto max-w-[var(--container-ficha)] px-6"
+    style="padding-block: var(--paso-respiro);"
+  >
+    <p class="etiqueta" style="color: var(--senal-banda);">
+      {sistemas.length} {s.indiceEtiqueta}
+    </p>
+    <h2
+      class="mt-3 max-w-[18ch]"
+      style="font-size: var(--text-seccion); line-height: 1.02; color: var(--sobre-marca);"
+    >
+      {s.indiceTitulo}
+    </h2>
+
+    <ul class="mt-12 border-t" style="border-color: color-mix(in srgb, var(--sobre-marca) 25%, transparent);">
+      {
+        sistemas.map((p) => (
+          <li style="border-bottom: 1px solid color-mix(in srgb, var(--sobre-marca) 25%, transparent);">
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 py-6 transition-colors md:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)_minmax(0,1fr)_auto] hover:bg-white/5 focus-visible:bg-white/5"
+            >
+              <span
+                class="rotulo col-start-1 row-start-1 md:col-auto md:row-auto"
+                style="font-size: var(--text-ficha); line-height: 1.15;"
+              >
+                {p.nombre}
+              </span>
+              <span
+                class="col-span-2 row-start-2 text-[0.9375rem] md:col-span-1 md:row-auto"
+                style="color: color-mix(in srgb, var(--sobre-marca) 78%, transparent);"
+              >
+                {p.es.que}
+              </span>
+              <span
+                class="hidden text-[0.8125rem] md:block md:justify-self-end"
+                style="color: color-mix(in srgb, var(--sobre-marca) 72%, transparent);"
+              >
+                {p.stack.slice(0, 3).join(' · ')}
+              </span>
+              <span
+                class="etiqueta col-start-2 row-start-1 flex items-center gap-1.5 justify-self-end transition-transform duration-200 group-hover:translate-x-1 md:col-auto md:row-auto"
+                style="color: var(--senal-banda);"
+              >
+                {s.abrir}
+                <Flecha />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

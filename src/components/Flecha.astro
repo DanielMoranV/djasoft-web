@@ -1,0 +1,23 @@
+---
+/**
+ * Flecha «Abrir →», dibujada y no escrita.
+ *
+ * El caracter → (U+2192) no entra en el subconjunto latin de las fuentes
+ * autoalojadas, asi que escrito como texto caeria a una fuente del sistema y
+ * desentonaria justo en el gesto mas repetido del sitio. En SVG hereda el
+ * color, escala con el texto y se anima sin depender de nada.
+ */
+---
+
+<svg
+  class="inline-block h-[0.7em] w-[0.9em] shrink-0"
+  viewBox="0 0 20 16"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="square"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M1 8h16M12 2.5 18.5 8 12 13.5" />
+</svg>
