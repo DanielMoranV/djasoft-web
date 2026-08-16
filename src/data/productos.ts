@@ -33,6 +33,8 @@ export interface Producto {
   iconoSvg?: string;
   /** Cliente, cuando el producto se hizo por encargo. */
   cliente?: string;
+  /** Sector al que sirve. La portada cuenta los distintos, no los repite. */
+  sector: string;
   stack: string[];
   es: { que: string; detalle: string };
   /** Nota al pie, cuando el estado necesita explicacion. */
@@ -42,6 +44,7 @@ export interface Producto {
 export const productos: Producto[] = [
   {
     id: 'almazen',
+    sector: 'retail',
     icono: almazenIcono,
     nombre: 'AlmaZen',
     url: 'https://almazenapp.djasoft.net.pe/',
@@ -57,6 +60,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'mozaicopro',
+    sector: 'restauración',
     icono: mozaicoIcono,
     nombre: 'Mozaico',
     url: 'https://mozaicopro.djasoft.net.pe/',
@@ -72,6 +76,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'easypay',
+    sector: 'servicios',
     icono: easypayIcono,
     nombre: 'EasyPay',
     url: 'https://easypay.djasoft.net.pe/',
@@ -86,6 +91,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'otto-tonsmann',
+    sector: 'educación',
     icono: ottoIcono,
     nombre: 'Otto Tonsmann',
     url: 'https://otto-tonsmann.web.app/',
@@ -102,6 +108,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'coneri',
+    sector: 'energía',
     icono: coneriIcono,
     nombre: 'CONERI',
     url: 'https://coneri.pe/',
@@ -118,6 +125,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'master-color',
+    sector: 'retail',
     icono: masterColorIcono,
     nombre: 'Master Color',
     url: 'https://www.mastercolor.net.pe/',
@@ -135,6 +143,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'agenda-eh',
+    sector: 'servicios',
     iconoSvg: '/productos/agenda-eh.svg',
     nombre: 'Agenda EH',
     url: 'https://agenda-eh.web.app/',
@@ -149,6 +158,7 @@ export const productos: Producto[] = [
   },
   {
     id: 'surgimed',
+    sector: 'salud',
     icono: surgimedIcono,
     nombre: 'SURGIMED',
     url: 'https://surgimed-pe.web.app/',
@@ -163,6 +173,8 @@ export const productos: Producto[] = [
     },
   },
 ];
+
+export const sectores = new Set(productos.map((p) => p.sector)).size;
 
 export const propios = productos.filter((p) => p.modelo === 'propio');
 export const paraClientes = productos.filter((p) => p.modelo === 'cliente');

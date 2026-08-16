@@ -16,20 +16,22 @@ export const s = {
     'SUNAT y automatización alrededor de sistemas FoxPro en producción. Ocho productos ' +
     'en producción.',
 
-  navProductos: 'Productos',
-  navClientes: 'Clientes',
   navQueResuelvo: 'Qué resuelvo',
+  navServicios: 'Servicios',
+  navClientes: 'Clientes',
+  navProductos: 'Productos',
   navContacto: 'Contacto',
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
   heroEntrada:
-    'Soy Daniel Morán Vílchez y desarrollo desde Piura, bajo la marca Djasoft. Construyo ' +
-    'ERPs, planillas y facturación electrónica para empresas peruanas, y automatizo ' +
-    'alrededor de los sistemas que ya funcionan, sin apagarlos.',
+    'Soy Daniel Morán Vílchez y desarrollo desde Piura, bajo la marca Djasoft. He puesto a ' +
+    'funcionar sistemas en institutos, clínicas, distribuidoras, restaurantes y empresas de ' +
+    'energía solar: ERPs, planillas, facturación electrónica ante SUNAT, y automatización ' +
+    'alrededor de lo que ya usan, sin apagarlo.',
   heroPrueba: 'Todo lo que hay debajo se puede abrir y probar ahora mismo.',
 
-  metricaProductos: 'productos en producción',
-  metricaClientes: 'empresas con su operación resuelta',
+  metricaProductos: 'sistemas en producción, abribles ahora mismo',
+  metricaSectores: 'sectores distintos, de un instituto a una clínica',
   metricaRegistros: 'registros migrados sin parar la operación',
 
   productosTitulo: 'Productos propios',
@@ -62,6 +64,39 @@ export const s = {
     'Facturación electrónica ante SUNAT, SIAGIE y MINEDU en educación, normativa de ' +
     'SUSALUD en salud, RENIEC y ubigeo. Es la parte que un SaaS importado nunca resuelve ' +
     'bien, y la que decide si el software sirve de verdad aquí.',
+
+  serviciosTitulo: 'Qué puede contratarme',
+  serviciosEntrada:
+    'No todo se resuelve con un producto de catálogo. Estas son las cuatro formas de ' +
+    'trabajar juntos, y ninguna empieza por cambiarle el sistema a nadie.',
+
+  sv1Titulo: 'Poner en marcha uno de mis productos',
+  sv1Texto:
+    'AlmaZen, Mozaico o EasyPay funcionando con sus datos, sus productos y su manera de ' +
+    'trabajar. No es instalarlo y desearle suerte: es cargar lo que ya tiene, ajustar lo que ' +
+    'haga falta y acompañar las primeras semanas, que son las que deciden si un sistema se ' +
+    'usa o se abandona.',
+
+  sv2Titulo: 'Automatizar e integrar lo que ya tiene',
+  sv2Texto:
+    'Su sistema actual —FoxPro, hojas de cálculo, o el que sea— se queda donde está y ' +
+    'funcionando. Lo que construyo alrededor hace que los datos lleguen a donde hacen falta: ' +
+    'reportes, web, otro sistema, análisis. Así se movieron más de 500.000 registros sin ' +
+    'cerrar un día.',
+
+  sv3Titulo: 'Inteligencia artificial dentro de su operación',
+  sv3Texto:
+    'No un chatbot pegado por fuera. Un asistente que consulta sus datos reales con permisos ' +
+    'por usuario, o uno público que solo ve lo que usted decida enseñar. Los dos están ' +
+    'funcionando hoy en empresas, y se pueden probar antes de contratar nada.',
+
+  serviciosLlamada: 'Cuénteme qué necesita y le digo cuál de las cuatro es',
+
+  sv4Titulo: 'Consultoría y desarrollo a medida',
+  sv4Texto:
+    'Cuando lo que necesita no existe todavía. O cuando lo que necesita es que alguien mire ' +
+    'su operación con criterio y le diga qué automatizar primero, qué puede esperar y qué ' +
+    'conviene no tocar.',
 
   r3Titulo: 'Inteligencia artificial dentro del producto',
   r3Texto:

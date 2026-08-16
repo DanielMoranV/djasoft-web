@@ -1,14 +1,19 @@
 ---
 import TarjetaProducto from './TarjetaProducto.astro';
-import { propios, paraClientes, productos } from '../data/productos';
+import { propios, paraClientes, productos, sectores } from '../data/productos';
 import { s } from '../textos';
 
 const enProduccion = productos.filter((p) => p.url).length;
-const clientesQuePagaron = new Set(paraClientes.map((p) => p.cliente)).size;
 
+/*
+  Las metricas cuentan lo resuelto, no la clientela. Contar clientes con la
+  suscripcion recien arrancada juega en contra: la cifra honesta seria pequena
+  y la pagina la pondria en grande. Sistemas vivos y sectores distintos son
+  igual de ciertos, se calculan solos y dicen lo que un comprador quiere saber.
+*/
 const metricas = [
   { cifra: String(enProduccion), texto: s.metricaProductos },
-  { cifra: String(clientesQuePagaron), texto: s.metricaClientes },
+  { cifra: String(sectores), texto: s.metricaSectores },
   { cifra: '500 000+', texto: s.metricaRegistros },
 ];
 
@@ -16,6 +21,13 @@ const resuelvo = [
   { titulo: s.r1Titulo, texto: s.r1Texto },
   { titulo: s.r2Titulo, texto: s.r2Texto },
   { titulo: s.r3Titulo, texto: s.r3Texto },
+];
+
+const servicios = [
+  { titulo: s.sv1Titulo, texto: s.sv1Texto },
+  { titulo: s.sv2Titulo, texto: s.sv2Texto },
+  { titulo: s.sv3Titulo, texto: s.sv3Texto },
+  { titulo: s.sv4Titulo, texto: s.sv4Texto },
 ];
 ---
 
@@ -43,34 +55,18 @@ const resuelvo = [
   </dl>
 </section>
 
-<!-- Productos propios -->
-<section id="productos" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.productosTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.productosEntrada}</p>
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {propios.map((p) => <TarjetaProducto producto={p} />)}
-    </div>
-  </div>
-</section>
+<!--
+  Orden deliberado: primero el problema, luego lo que se puede contratar, luego
+  la prueba de que ya se hizo, y al final el catalogo. Antes la pagina ensenaba
+  el catalogo a alguien que todavia no habia reconocido su problema.
+-->
 
-<!-- Trabajo por encargo -->
+<!-- Que resuelvo -->
 <section
-  id="clientes"
+  id="resuelvo"
   class="scroll-mt-20 border-t"
   style="border-color: var(--borde); background: var(--fondo-hondo);"
 >
-  <div class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold sm:text-3xl">{s.clientesTitulo}</h2>
-    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.clientesEntrada}</p>
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {paraClientes.map((p) => <TarjetaProducto producto={p} />)}
-    </div>
-  </div>
-</section>
-
-<!-- Que resuelvo -->
-<section id="resuelvo" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
   <div class="mx-auto max-w-5xl px-6 py-16">
     <h2 class="text-2xl font-bold sm:text-3xl">{s.resuelvoTitulo}</h2>
     <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.resuelvoEntrada}</p>
@@ -95,8 +91,68 @@ const resuelvo = [
   </div>
 </section>
 
+<!-- Servicios -->
+<section id="servicios" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="text-2xl font-bold sm:text-3xl">{s.serviciosTitulo}</h2>
+    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.serviciosEntrada}</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        servicios.map((sv) => (
+          <div
+            class="rounded-xl border p-6"
+            style="border-color: var(--borde); background: var(--fondo-hondo);"
+          >
+            <h3 class="text-lg font-semibold">{sv.titulo}</h3>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--texto-suave);">
+              {sv.texto}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 text-sm">
+      <a href="#contacto" class="font-medium hover:underline" style="color: var(--marca);">
+        {s.serviciosLlamada} <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- Trabajo por encargo -->
+<section
+  id="clientes"
+  class="scroll-mt-20 border-t"
+  style="border-color: var(--borde); background: var(--fondo-hondo);"
+>
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="text-2xl font-bold sm:text-3xl">{s.clientesTitulo}</h2>
+    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.clientesEntrada}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {paraClientes.map((p) => <TarjetaProducto producto={p} />)}
+    </div>
+  </div>
+</section>
+
+<!-- Productos propios -->
+<section id="productos" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+  <div class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="text-2xl font-bold sm:text-3xl">{s.productosTitulo}</h2>
+    <p class="mt-3 max-w-2xl" style="color: var(--texto-suave);">{s.productosEntrada}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {propios.map((p) => <TarjetaProducto producto={p} />)}
+    </div>
+  </div>
+</section>
+
 <!-- Contacto -->
-<section id="contacto" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+<section
+  id="contacto"
+  class="scroll-mt-20 border-t"
+  style="border-color: var(--borde); background: var(--fondo-hondo);"
+>
   <div class="mx-auto max-w-5xl px-6 py-20">
     <h2 class="text-2xl font-bold sm:text-3xl">{s.contactoTitulo}</h2>
     <p class="mt-3 max-w-xl leading-relaxed" style="color: var(--texto-suave);">
