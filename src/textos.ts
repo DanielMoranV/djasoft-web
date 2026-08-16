@@ -17,9 +17,9 @@ export const s = {
     'en producción.',
 
   navQueResuelvo: 'Qué resuelvo',
-  navServicios: 'Servicios',
-  navClientes: 'Clientes',
-  navProductos: 'Productos',
+  navServicios: 'Por qué contratarme',
+  navClientes: 'Casos',
+  navProductos: 'Proyectos',
   navContacto: 'Contacto',
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
@@ -34,13 +34,15 @@ export const s = {
   metricaSectores: 'sectores distintos, de un instituto a una clínica',
   metricaRegistros: 'registros migrados sin parar la operación',
 
-  productosTitulo: 'Productos propios',
+  productosTitulo: 'Proyectos propios',
   productosEntrada:
-    'Ya existen, ya están en uso y se pagan por suscripción: nadie financia un desarrollo ' +
-    'desde cero, cada uno se implanta con los datos y la forma de trabajar de su empresa. ' +
-    'Cada enlace abre el producto real, no una captura.',
+    'Cada uno nació de un problema real y lo resuelve de forma eficiente. Detrás hay un ' +
+    'estudio a fondo de la normativa peruana y del mercado al que sirve, y eso se nota en lo ' +
+    'que ahorra: horas administrativas que dejan de gastarse cada mes, y control real sobre ' +
+    'las ventas y los movimientos, al día y sin tener que pedírselo a nadie. Se contratan ' +
+    'por uso o se adquieren en propiedad. Cada enlace abre el producto real, no una captura.',
 
-  clientesTitulo: 'Trabajo por encargo',
+  clientesTitulo: 'Casos de éxito',
   clientesEntrada:
     'Ninguno pidió “un sistema”: pedían dejar de anotar la caja en papel, aparecer cuando ' +
     'alguien busca su rubro, vender fuera del mostrador. Eso es lo que entregué, y todo ' +
@@ -65,10 +67,11 @@ export const s = {
     'SUSALUD en salud, RENIEC y ubigeo. Es la parte que un SaaS importado nunca resuelve ' +
     'bien, y la que decide si el software sirve de verdad aquí.',
 
-  serviciosTitulo: 'Qué puede contratarme',
+  serviciosTitulo: 'Por qué contratarme',
   serviciosEntrada:
-    'No todo se resuelve con un producto de catálogo. Estas son las cuatro formas de ' +
-    'trabajar juntos, y ninguna empieza por cambiarle el sistema a nadie.',
+    'Porque no llego con un producto debajo del brazo a ver dónde encaja. Estas son las ' +
+    'cuatro maneras en que puedo entrar en su operación, y ninguna empieza por apagar lo ' +
+    'que ya le funciona.',
 
   sv1Titulo: 'Poner en marcha uno de mis productos',
   sv1Texto:
