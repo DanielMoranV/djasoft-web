@@ -1,0 +1,50 @@
+# Djasoft — Daniel Morán Vílchez
+
+> Desarrollo de software de gestión para empresas de Piura, Sullana e Ignacio Escudero
+> (Perú): ERP, planillas, facturación electrónica ante SUNAT, comercio electrónico y
+> automatización sobre los sistemas que la empresa ya usa. Ocho sistemas en producción,
+> todos con URL abierta.
+
+Daniel Morán Vílchez desarrolla bajo la marca Djasoft desde la región de Piura, Perú, y
+atiende empresas de Piura, Sullana e Ignacio Escudero, además del resto del país en remoto.
+
+## Qué se puede contratar
+
+- **Poner en marcha un producto propio** (AlmaZen, Mozaico, EasyPay) con los datos y la
+  forma de trabajar de la empresa. Se contratan por uso o se adquieren en propiedad.
+- **Automatizar e integrar el sistema existente.** El sistema actual —FoxPro, hojas de
+  cálculo u otro— se queda funcionando; lo que se construye alrededor lleva los datos a
+  reportes, web y análisis. Más de 500.000 registros históricos migrados sin cerrar un día.
+- **Inteligencia artificial dentro de la operación**: asistentes que consultan datos reales
+  con permisos por usuario, o chatbots públicos limitados al catálogo.
+- **Consultoría y desarrollo a medida**, incluido el criterio sobre qué automatizar primero
+  y qué conviene no tocar.
+
+## Especialidad
+
+Normativa peruana que un software importado no resuelve: facturación electrónica ante
+SUNAT, SIAGIE y MINEDU en educación, SUSALUD en salud, RENIEC y ubigeo. Y convivencia con
+sistemas heredados: un motor DBF propio escribe en tablas FoxPro con bloqueo por rangos de
+bytes mientras la aplicación de siempre sigue abierta en cada escritorio.
+
+## Sistemas en producción
+
+- [AlmaZen](https://almazenapp.djasoft.net.pe/) — ERP multiempresa: inventario, compras,
+  ventas, punto de venta y facturación SUNAT, con asistente de IA de 29 herramientas.
+- [Mozaico](https://mozaicopro.djasoft.net.pe/) — gestión de restaurantes; salón y cocina
+  sincronizados por WebSockets.
+- [EasyPay](https://easypay.djasoft.net.pe/) — planillas, asistencia y horarios.
+- [Agenda EH](https://agenda-eh.web.app/) — gestión del tiempo con Google Calendar.
+- [Master Color](https://www.mastercolor.net.pe/) — comercio electrónico con app móvil.
+- [Otto Tonsmann](https://otto-tonsmann.web.app/) — caja, comprobantes y padrón de alumnos.
+- [CONERI](https://coneri.pe/) — web y panel para una empresa de energía solar.
+- [SURGIMED](https://surgimed-pe.web.app/) — sitio de un importador de material quirúrgico
+  en Sullana.
+
+## Contacto
+
+- Correo: skaan.dmv@gmail.com
+- Sitio comercial: https://djasoft.net.pe
+- Perfil técnico del desarrollador: https://danielmoranv.github.io
+- LinkedIn: https://linkedin.com/in/danielmoranv
+- GitHub: https://github.com/DanielMoranV

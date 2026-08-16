@@ -10,11 +10,11 @@
 export const PERFIL_TECNICO = 'https://danielmoranv.github.io';
 
 export const s = {
-  titulo: 'Djasoft — Daniel Morán Vílchez',
+  titulo: 'Djasoft — Software de gestión para empresas en Piura y Sullana',
   descripcion:
-    'Software de gestión para empresas peruanas: ERP, planillas, facturación electrónica ' +
-    'SUNAT y automatización alrededor de sistemas FoxPro en producción. Ocho productos ' +
-    'en producción.',
+    'Desarrollo de software de gestión para empresas de Piura, Sullana e Ignacio Escudero: ' +
+    'ERP, planillas, facturación electrónica ante SUNAT y automatización sobre los sistemas ' +
+    'que ya usan. Ocho sistemas en producción, abribles ahora mismo.',
 
   tarjetaAlt:
     'Djasoft — Software de gestión que ya está funcionando. ERPs, planillas, facturación ' +
@@ -120,7 +120,15 @@ export const s = {
     'Le diré con franqueza si le sirve uno de estos productos, si hay que construirlo, o si ' +
     'lo que necesita no es algo que yo venda.',
   contactoCorreo: 'Correo',
-  contactoUbicacion: 'Piura, Perú',
+  contactoUbicacion: 'Piura · Sullana · Ignacio Escudero, Perú',
+  /*
+    El ambito va en texto visible, no solo en los datos estructurados: Google
+    ignora un lugar que solo aparece en el marcado, y para una busqueda local
+    -"sistema de facturacion en Sullana"- esta frase es la que compite.
+  */
+  contactoAmbito:
+    'Trabajo con empresas de Piura, Sullana e Ignacio Escudero, y con el resto del Perú en ' +
+    'remoto. Cuando hay que estar delante del sistema, se está.',
 
   piePerfil: 'Perfil técnico',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',

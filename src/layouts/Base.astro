@@ -14,6 +14,69 @@ const canonica = new URL('/', Astro.site);
  * vacio. En un sitio comercial eso es la primera impresion de cada recomendado.
  */
 const tarjeta = new URL('/og.png', Astro.site);
+
+/**
+ * Datos estructurados. Es lo que leen Google y los sistemas de IA cuando
+ * necesitan responder "quien hace software de gestion en Sullana": el texto lo
+ * interpretan, esto lo entienden.
+ *
+ * REGLA: aqui solo va lo que tambien esta VISIBLE en la pagina. Marcar datos
+ * que el visitante no ve es justo lo que Google penaliza, asi que el ambito
+ * geografico vive tambien en el bloque de contacto, en texto normal.
+ */
+const negocio = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${canonica.href}#djasoft`,
+  name: 'Djasoft',
+  alternateName: 'Djasoft — Daniel Morán Vílchez',
+  url: canonica.href,
+  image: tarjeta.href,
+  description: s.descripcion,
+  email: 'mailto:skaan.dmv@gmail.com',
+  inLanguage: 'es-PE',
+  founder: {
+    '@type': 'Person',
+    name: 'Daniel Morán Vílchez',
+    url: PERFIL_TECNICO,
+    jobTitle: 'Desarrollador full stack e ingeniero de datos',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'Piura',
+    addressCountry: 'PE',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Piura' },
+    { '@type': 'City', name: 'Sullana' },
+    { '@type': 'AdministrativeArea', name: 'Ignacio Escudero' },
+    { '@type': 'Country', name: 'Perú' },
+  ],
+  knowsAbout: [
+    'ERP', 'Facturación electrónica SUNAT', 'Planillas', 'Punto de venta',
+    'Migración de sistemas FoxPro', 'Automatización de procesos',
+    'Integración de sistemas', 'Inteligencia artificial aplicada',
+    'SIAGIE', 'SUSALUD', 'Comercio electrónico',
+  ],
+  sameAs: [
+    'https://github.com/DanielMoranV',
+    'https://linkedin.com/in/danielmoranv',
+    PERFIL_TECNICO,
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: s.serviciosTitulo,
+    itemListElement: [
+      { titulo: s.sv1Titulo, texto: s.sv1Texto },
+      { titulo: s.sv2Titulo, texto: s.sv2Texto },
+      { titulo: s.sv3Titulo, texto: s.sv3Texto },
+      { titulo: s.sv4Titulo, texto: s.sv4Texto },
+    ].map((sv) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: sv.titulo, description: sv.texto },
+    })),
+  },
+};
 ---
 
 <!doctype html>
@@ -40,6 +103,8 @@ const tarjeta = new URL('/og.png', Astro.site);
     <meta property="og:image:alt" content={s.tarjetaAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={tarjeta} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(negocio)} is:inline />
 
     <meta name="author" content="Daniel Morán Vílchez" />
     <meta name="theme-color" content="#1b4965" media="(prefers-color-scheme: light)" />
