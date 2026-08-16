@@ -19,7 +19,6 @@ export const s = {
   navProductos: 'Productos',
   navClientes: 'Clientes',
   navQueResuelvo: 'Qué resuelvo',
-  navCodigo: 'Código abierto',
   navContacto: 'Contacto',
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
@@ -71,10 +70,6 @@ export const s = {
     'una con su propio permiso. En Master Color, un chatbot de ventas atiende al público ' +
     'sin ninguna herramienta, viendo solo el catálogo. Dos problemas distintos, dos ' +
     'diseños opuestos a propósito.',
-
-  codigoTitulo: 'Código abierto',
-  codigoEntrada:
-    'Piezas extraídas de los productos, publicadas enteras y sin reglas de negocio.',
 
   contactoTitulo: 'Hablemos',
   contactoEntrada:
