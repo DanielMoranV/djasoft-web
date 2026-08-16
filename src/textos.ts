@@ -16,6 +16,10 @@ export const s = {
     'SUNAT y automatización alrededor de sistemas FoxPro en producción. Ocho productos ' +
     'en producción.',
 
+  tarjetaAlt:
+    'Djasoft — Software de gestión que ya está funcionando. ERPs, planillas, facturación ' +
+    'electrónica SUNAT y automatización. Daniel Morán Vílchez, Piura, Perú.',
+
   navQueResuelvo: 'Qué resuelvo',
   navServicios: 'Por qué contratarme',
   navClientes: 'Casos',

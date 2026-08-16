@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://djasoft.net.pe/sitemap-index.xml
