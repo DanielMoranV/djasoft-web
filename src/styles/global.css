@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+/*
+  Paleta. Se define entera en claro y se redefine en oscuro, para que ningun
+  color exista solo dentro de una media query.
+
+  Azul profundo como color de marca -serio, no de startup- y ambar para lo que
+  hay que pulsar. El fondo no es blanco puro: cansa menos en pantalla.
+*/
+@theme {
+  --color-tinta: #0d1b2a;
+  --color-tinta-suave: #415a77;
+  --color-papel: #fbfaf7;
+  --color-papel-hondo: #f2efe9;
+  --color-borde: #e3ded4;
+  --color-marca: #1b4965;
+  --color-acento: #c8873a;
+}
+
+:root {
+  --fondo: var(--color-papel);
+  --fondo-hondo: var(--color-papel-hondo);
+  --texto: var(--color-tinta);
+  --texto-suave: var(--color-tinta-suave);
+  --borde: var(--color-borde);
+  --marca: var(--color-marca);
+  --acento: var(--color-acento);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0b1420;
+    --fondo-hondo: #111e2e;
+    --texto: #eef2f6;
+    --texto-suave: #9fb3c8;
+    --borde: #1e3148;
+    --marca: #7fb2d4;
+    --acento: #e0a458;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Que el ancla no quede pegada bajo la barra fija. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+/* Foco visible de verdad: se navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
