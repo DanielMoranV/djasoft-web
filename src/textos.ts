@@ -1,0 +1,90 @@
+/**
+ * Textos del sitio comercial. Los datos de producto viven en src/data.
+ *
+ * Este sitio es SOLO espanol y SOLO vendedor: habla a un dueno de empresa,
+ * no a un reclutador. El perfil tecnico —stacks, arquitectura, open source,
+ * commits— vive aparte, en PERFIL_TECNICO, y a proposito no se mezcla aqui.
+ */
+
+/** Portafolio de desarrollador. Publico distinto, dominio distinto. */
+export const PERFIL_TECNICO = 'https://danielmoranv.github.io';
+
+export const s = {
+  titulo: 'Djasoft — Daniel Morán Vílchez',
+  descripcion:
+    'Software de gestión para empresas peruanas: ERP, planillas, facturación electrónica ' +
+    'SUNAT y automatización alrededor de sistemas FoxPro en producción. Ocho productos ' +
+    'en producción.',
+
+  navProductos: 'Productos',
+  navClientes: 'Clientes',
+  navQueResuelvo: 'Qué resuelvo',
+  navCodigo: 'Código abierto',
+  navContacto: 'Contacto',
+
+  heroTitulo: 'Software de gestión que ya está funcionando.',
+  heroEntrada:
+    'Soy Daniel Morán Vílchez y desarrollo desde Piura, bajo la marca Djasoft. Construyo ' +
+    'ERPs, planillas y facturación electrónica para empresas peruanas, y automatizo ' +
+    'alrededor de los sistemas que ya funcionan, sin apagarlos.',
+  heroPrueba: 'Todo lo que hay debajo se puede abrir y probar ahora mismo.',
+
+  metricaProductos: 'productos en producción',
+  metricaClientes: 'empresas con su operación resuelta',
+  metricaRegistros: 'registros migrados sin parar la operación',
+
+  productosTitulo: 'Productos propios',
+  productosEntrada:
+    'Ya existen, ya están en uso y se pagan por suscripción: nadie financia un desarrollo ' +
+    'desde cero, cada uno se implanta con los datos y la forma de trabajar de su empresa. ' +
+    'Cada enlace abre el producto real, no una captura.',
+
+  clientesTitulo: 'Trabajo por encargo',
+  clientesEntrada:
+    'Ninguno pidió “un sistema”: pedían dejar de anotar la caja en papel, aparecer cuando ' +
+    'alguien busca su rubro, vender fuera del mostrador. Eso es lo que entregué, y todo ' +
+    'sigue en producción.',
+
+  resuelvoTitulo: 'Qué resuelvo',
+  resuelvoEntrada: 'Tres cosas que no encontrarás en un software importado.',
+
+  r1Titulo: 'Sistemas que funcionan y no hay que apagar',
+  r1Texto:
+    'FoxPro fue y sigue siendo un referente: hay operaciones que llevan años sostenidas ' +
+    'sobre él, y eso no es deuda técnica, es la prueba de que funciona. No vengo a ' +
+    'apagarlo. Escribí un motor propio que lee y escribe sobre esas tablas mientras el ' +
+    'personal trabaja, bloqueando solo los bytes de cada registro: así se llevaron más de ' +
+    '500.000 registros históricos a reportes, web y análisis sin cerrar un día ni ' +
+    'cambiarle la rutina a nadie. El proceso que funciona se queda; se automatiza lo que ' +
+    'pasa alrededor.',
+
+  r2Titulo: 'Las reglas peruanas, que nadie más implementa',
+  r2Texto:
+    'Facturación electrónica ante SUNAT, SIAGIE y MINEDU en educación, normativa de ' +
+    'SUSALUD en salud, RENIEC y ubigeo. Es la parte que un SaaS importado nunca resuelve ' +
+    'bien, y la que decide si el software sirve de verdad aquí.',
+
+  r3Titulo: 'Inteligencia artificial dentro del producto',
+  r3Texto:
+    'No como asistente de programación: como parte del sistema. En AlmaZen, un agente ' +
+    'conversacional consulta stock, ventas, márgenes y deuda con 29 herramientas, cada ' +
+    'una con su propio permiso. En Master Color, un chatbot de ventas atiende al público ' +
+    'sin ninguna herramienta, viendo solo el catálogo. Dos problemas distintos, dos ' +
+    'diseños opuestos a propósito.',
+
+  codigoTitulo: 'Código abierto',
+  codigoEntrada:
+    'Piezas extraídas de los productos, publicadas enteras y sin reglas de negocio.',
+
+  contactoTitulo: 'Hablemos',
+  contactoEntrada:
+    'Si su operación se sostiene con hojas de cálculo, si tiene un sistema que funciona ' +
+    'pero nadie se atreve a tocar, o si su empresa no aparece cuando la buscan, escríbame. ' +
+    'Le diré con franqueza si le sirve uno de estos productos, si hay que construirlo, o si ' +
+    'lo que necesita no es algo que yo venda.',
+  contactoCorreo: 'Correo',
+  contactoUbicacion: 'Piura, Perú',
+
+  piePerfil: 'Perfil técnico',
+  pieDerechos: 'Djasoft — Daniel Morán Vílchez',
+} as const;

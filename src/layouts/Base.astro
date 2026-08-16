@@ -1,21 +1,13 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
-import { t, type Idioma } from '../i18n/ui';
+import { s, PERFIL_TECNICO } from '../textos';
 
-interface Props {
-  idioma: Idioma;
-}
-
-const { idioma } = Astro.props;
-const s = t[idioma];
-
-const canonica = new URL(idioma === 'es' ? '/' : '/en/', Astro.site);
-const alterna = new URL(idioma === 'es' ? '/en/' : '/', Astro.site);
+const canonica = new URL('/', Astro.site);
 ---
 
 <!doctype html>
-<html lang={s.htmlLang}>
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,15 +16,11 @@ const alterna = new URL(idioma === 'es' ? '/en/' : '/', Astro.site);
     <link rel="canonical" href={canonica} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <link rel="alternate" hreflang="es" href={new URL('/', Astro.site)} />
-    <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
-
     <meta property="og:type" content="website" />
     <meta property="og:title" content={s.titulo} />
     <meta property="og:description" content={s.descripcion} />
     <meta property="og:url" content={canonica} />
-    <meta property="og:locale" content={idioma === 'es' ? 'es_PE' : 'en_US'} />
+    <meta property="og:locale" content="es_PE" />
     <meta name="twitter:card" content="summary" />
 
     <meta name="author" content="Daniel Morán Vílchez" />
@@ -46,10 +34,10 @@ const alterna = new URL(idioma === 'es' ? '/en/' : '/', Astro.site);
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:px-4 focus:py-2"
       style="background: var(--marca); color: var(--fondo);"
     >
-      {idioma === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+      Saltar al contenido
     </a>
 
-    <Nav idioma={idioma} />
+    <Nav />
     <main id="contenido"><slot /></main>
 
     <footer style="border-color: var(--borde);" class="border-t">
@@ -59,9 +47,11 @@ const alterna = new URL(idioma === 'es' ? '/en/' : '/', Astro.site);
       >
         <p>© {new Date().getFullYear()} {s.pieDerechos}</p>
         <nav class="flex flex-wrap gap-x-5 gap-y-2">
-          <a class="hover:underline" href="https://github.com/DanielMoranV">GitHub</a>
-          <a class="hover:underline" href="https://linkedin.com/in/danielmoranv">LinkedIn</a>
-          <a class="hover:underline" href={alterna.pathname}>{s.otroIdioma}</a>
+          <a class="hover:underline" href={PERFIL_TECNICO} target="_blank" rel="noopener noreferrer">
+            {s.piePerfil}
+          </a>
+          <a class="hover:underline" href="https://github.com/DanielMoranV" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="hover:underline" href="https://linkedin.com/in/danielmoranv" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </nav>
       </div>
     </footer>

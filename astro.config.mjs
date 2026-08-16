@@ -6,13 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://djasoft.net.pe',
 
-  // Espanol por defecto y sin prefijo: la raiz es para clientes peruanos.
-  // El perfil tecnico en ingles vive en /en.
-  i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
-    routing: { prefixDefaultLocale: false },
-  },
+  // Sitio de una sola lengua a proposito: es la marca vendedora, y habla a
+  // empresas peruanas. El perfil de desarrollador —en ingles, para reclutadores—
+  // vive en danielmoranv.github.io, con su propio repo.
 
   vite: {
     plugins: [tailwindcss()],

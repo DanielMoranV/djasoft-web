@@ -1,13 +1,5 @@
 ---
-import { t, type Idioma } from '../i18n/ui';
-
-interface Props {
-  idioma: Idioma;
-}
-const { idioma } = Astro.props;
-const s = t[idioma];
-const raiz = idioma === 'es' ? '/' : '/en/';
-const otra = idioma === 'es' ? '/en/' : '/';
+import { s } from '../textos';
 
 const enlaces = [
   { href: '#productos', texto: s.navProductos },
@@ -22,7 +14,7 @@ const enlaces = [
   style="border-color: var(--borde); background: color-mix(in srgb, var(--fondo) 88%, transparent);"
 >
   <nav class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
-    <a href={raiz} class="font-semibold tracking-tight" style="color: var(--marca);">
+    <a href="/" class="font-semibold tracking-tight" style="color: var(--marca);">
       Djasoft
     </a>
 
@@ -34,13 +26,6 @@ const enlaces = [
           </a>
         ))
       }
-      <a
-        href={otra}
-        class="rounded-full border px-3 py-1 text-xs font-medium"
-        style="border-color: var(--borde); color: var(--texto-suave);"
-      >
-        {s.otroIdioma}
-      </a>
       <a
         href="#contacto"
         class="rounded-full px-4 py-1.5 text-sm font-medium"

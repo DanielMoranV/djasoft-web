@@ -1,23 +1,48 @@
 ---
+import { Image } from 'astro:assets';
 import type { Producto } from '../data/productos';
-import type { Idioma } from '../i18n/ui';
 
 interface Props {
   producto: Producto;
-  idioma: Idioma;
 }
-const { producto, idioma } = Astro.props;
-const texto = producto[idioma];
-const nota = producto.nota?.[idioma];
-const verDemo = idioma === 'es' ? 'Abrir' : 'Open';
+const { producto } = Astro.props;
+const texto = producto.es;
+const nota = producto.nota;
 ---
 
 <article
   class="flex flex-col rounded-xl border p-6 transition-shadow hover:shadow-lg"
   style="border-color: var(--borde); background: var(--fondo-hondo);"
 >
-  <div class="flex items-baseline justify-between gap-3">
-    <h3 class="text-lg font-semibold">{producto.nombre}</h3>
+  <div class="flex items-start justify-between gap-3">
+    <div class="flex items-center gap-3">
+      {
+        producto.icono && (
+          <Image
+            src={producto.icono}
+            alt=""
+            width={48}
+            height={48}
+            densities={[1, 2]}
+            loading="lazy"
+            class="h-12 w-12 shrink-0 object-contain"
+          />
+        )
+      }
+      {
+        producto.iconoSvg && (
+          <img
+            src={producto.iconoSvg}
+            alt=""
+            width="48"
+            height="48"
+            loading="lazy"
+            class="h-12 w-12 shrink-0 object-contain"
+          />
+        )
+      }
+      <h3 class="text-lg font-semibold">{producto.nombre}</h3>
+    </div>
     {
       nota && (
         <span class="shrink-0 rounded-full px-2 py-0.5 text-[0.7rem] font-medium"
@@ -28,7 +53,7 @@ const verDemo = idioma === 'es' ? 'Abrir' : 'Open';
     }
   </div>
 
-  <p class="mt-1 text-sm font-medium" style="color: var(--acento);">{texto.que}</p>
+  <p class="mt-3 text-sm font-medium" style="color: var(--acento);">{texto.que}</p>
 
   {
     producto.cliente && (
@@ -57,10 +82,12 @@ const verDemo = idioma === 'es' ? 'Abrir' : 'Open';
     producto.url && (
       <a
         href={producto.url}
+        target="_blank"
+        rel="noopener noreferrer"
         class="mt-5 inline-flex items-center gap-1 text-sm font-medium hover:underline"
         style="color: var(--marca);"
       >
-        {verDemo}
+        Abrir
         <span aria-hidden="true">→</span>
         <span class="sr-only">{producto.nombre}</span>
       </a>

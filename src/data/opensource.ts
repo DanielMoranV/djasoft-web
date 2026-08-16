@@ -9,7 +9,6 @@ export interface Pieza {
   /** Distintivo corto: donde esta publicado, o el lenguaje. */
   sello: string;
   es: string;
-  en: string;
 }
 
 export const piezas: Pieza[] = [
