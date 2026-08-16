@@ -34,6 +34,12 @@ const negocio = {
   image: tarjeta.href,
   description: s.descripcion,
   email: 'mailto:skaan.dmv@gmail.com',
+  /*
+    El telefono debe coincidir DIGITO A DIGITO con el de la ficha de Google
+    (DaniTec, Ignacio Escudero): Google contrasta ficha y web, y un numero que
+    no cuadra resta en vez de sumar.
+  */
+  telephone: '+51948860381',
   inLanguage: 'es-PE',
   founder: {
     '@type': 'Person',
@@ -41,9 +47,14 @@ const negocio = {
     url: PERFIL_TECNICO,
     jobTitle: 'Desarrollador full stack e ingeniero de datos',
   },
+  /*
+    La localidad es Ignacio Escudero, distrito de la provincia de Sullana. Es
+    lo que dice la ficha de Google, y ficha y sitio tienen que decir lo mismo.
+    Sullana y Piura entran abajo, en areaServed, que es su sitio correcto.
+  */
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Sullana',
+    addressLocality: 'Ignacio Escudero',
     addressRegion: 'Piura',
     addressCountry: 'PE',
   },

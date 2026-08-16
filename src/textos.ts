@@ -29,8 +29,8 @@ export const s = {
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
   heroEntrada:
-    'Soy Daniel Morán Vílchez y desarrollo desde Sullana, Piura, bajo la marca Djasoft. He ' +
-    'puesto a ' +
+    'Soy Daniel Morán Vílchez y desarrollo desde Ignacio Escudero, en Sullana, bajo la marca ' +
+    'Djasoft. He puesto a ' +
     'funcionar sistemas en institutos, clínicas, distribuidoras, restaurantes y empresas de ' +
     'energía solar: ERPs, planillas, facturación electrónica ante SUNAT, y automatización ' +
     'alrededor de lo que ya usan, sin apagarlo.',
@@ -122,16 +122,18 @@ export const s = {
     'Le diré con franqueza si le sirve uno de estos productos, si hay que construirlo, o si ' +
     'lo que necesita no es algo que yo venda.',
   contactoCorreo: 'Correo',
-  contactoUbicacion: 'Sullana, Piura — Perú',
+  contactoUbicacion: 'Ignacio Escudero · Sullana — Piura, Perú',
+  contactoTelefono: '948 860 381',
+  contactoWhatsapp: 'WhatsApp',
   /*
     El ambito va en texto visible, no solo en los datos estructurados: Google
     ignora un lugar que solo aparece en el marcado, y para una busqueda local
     -"sistema de facturacion en Sullana"- esta frase es la que compite.
   */
   contactoAmbito:
-    'Estoy en Sullana y trabajo con empresas de toda la región: Piura, Ignacio Escudero y ' +
-    'alrededores, y el resto del Perú en remoto. Cuando hay que estar delante del sistema, ' +
-    'se está.',
+    'Estoy en Ignacio Escudero, provincia de Sullana, y trabajo con empresas de toda la ' +
+    'región —Sullana, Piura y alrededores— y con el resto del Perú en remoto. Cuando hay ' +
+    'que estar delante del sistema, se está.',
 
   piePerfil: 'Perfil técnico',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',

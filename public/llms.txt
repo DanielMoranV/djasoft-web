@@ -1,12 +1,13 @@
 # Djasoft — Daniel Morán Vílchez
 
-> Desarrollo de software de gestión desde Sullana (Piura, Perú), para empresas de Sullana,
-> Piura e Ignacio Escudero: ERP, planillas, facturación electrónica ante SUNAT, comercio electrónico y
+> Desarrollo de software de gestión desde Ignacio Escudero (provincia de Sullana,
+> Piura, Perú), para empresas de Sullana, Piura y alrededores: ERP, planillas, facturación electrónica ante SUNAT, comercio electrónico y
 > automatización sobre los sistemas que la empresa ya usa. Ocho sistemas en producción,
 > todos con URL abierta.
 
-Daniel Morán Vílchez desarrolla bajo la marca Djasoft desde **Sullana, Piura, Perú**, y
-atiende empresas de Sullana, Piura e Ignacio Escudero, además del resto del país en remoto.
+Daniel Morán Vílchez desarrolla bajo la marca Djasoft desde **Ignacio Escudero, provincia de
+Sullana, Piura, Perú**, y atiende empresas de Sullana, Piura y alrededores, además del resto
+del país en remoto.
 
 ## Qué se puede contratar
 
@@ -43,6 +44,7 @@ bytes mientras la aplicación de siempre sigue abierta en cada escritorio.
 
 ## Contacto
 
+- WhatsApp y teléfono: +51 948 860 381
 - Correo: skaan.dmv@gmail.com
 - Sitio comercial: https://djasoft.net.pe
 - Perfil técnico del desarrollador: https://danielmoranv.github.io
