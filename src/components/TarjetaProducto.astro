@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { Producto } from '../data/productos';
 
 interface Props {
@@ -16,31 +15,15 @@ const nota = producto.nota;
 >
   <div class="flex items-start justify-between gap-3">
     <div class="flex items-center gap-3">
-      {
-        producto.icono && (
-          <Image
-            src={producto.icono}
-            alt=""
-            width={48}
-            height={48}
-            densities={[1, 2]}
-            loading="lazy"
-            class="h-12 w-12 shrink-0 object-contain"
-          />
-        )
-      }
-      {
-        producto.iconoSvg && (
-          <img
-            src={producto.iconoSvg}
-            alt=""
-            width="48"
-            height="48"
-            loading="lazy"
-            class="h-12 w-12 shrink-0 object-contain"
-          />
-        )
-      }
+      <img
+        src={producto.iconoSrc}
+        alt=""
+        width="48"
+        height="48"
+        loading="lazy"
+        decoding="async"
+        class="h-12 w-12 shrink-0 object-contain"
+      />
       <h3 class="text-lg font-semibold">{producto.nombre}</h3>
     </div>
     {

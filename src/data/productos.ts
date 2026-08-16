@@ -10,13 +10,6 @@
  * cambiarlo alli tambien — es el unico dato que no puede divergir.
  */
 
-import almazenIcono from '../assets/productos/almazen.png';
-import mozaicoIcono from '../assets/productos/mozaicopro.png';
-import easypayIcono from '../assets/productos/easypay.png';
-import ottoIcono from '../assets/productos/otto-tonsmann.png';
-import coneriIcono from '../assets/productos/coneri.png';
-import masterColorIcono from '../assets/productos/master-color.png';
-import surgimedIcono from '../assets/productos/surgimed.png';
 
 export type Modelo = 'propio' | 'cliente';
 
@@ -26,11 +19,14 @@ export interface Producto {
   url: string | null;
   modelo: Modelo;
   /**
-   * Logotipo del producto. Los PNG los optimiza Astro y salen en WebP; el SVG
-   * de Agenda EH se sirve tal cual desde /productos, que ya pesa 1 KB.
+   * Logotipo, servido tal cual desde /public/productos.
+   *
+   * NO usar el componente <Image> de Astro aqui. El build de Cloudflare no
+   * optimizaba y emitia URLs al endpoint /_image, que en un sitio estatico no
+   * existe: todas las imagenes daban 404 en produccion. Los WebP de 96 px ya
+   * estan generados y versionados, asi que no dependen del entorno que compile.
    */
-  icono?: ImageMetadata;
-  iconoSvg?: string;
+  iconoSrc: string;
   /** Cliente, cuando el producto se hizo por encargo. */
   cliente?: string;
   /** Sector al que sirve. La portada cuenta los distintos, no los repite. */
@@ -44,8 +40,8 @@ export interface Producto {
 export const productos: Producto[] = [
   {
     id: 'almazen',
+    iconoSrc: '/productos/almazen.webp',
     sector: 'retail',
-    icono: almazenIcono,
     nombre: 'AlmaZen',
     url: 'https://almazenapp.djasoft.net.pe/',
     modelo: 'propio',
@@ -60,8 +56,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'mozaicopro',
+    iconoSrc: '/productos/mozaicopro.webp',
     sector: 'restauración',
-    icono: mozaicoIcono,
     nombre: 'Mozaico',
     url: 'https://mozaicopro.djasoft.net.pe/',
     modelo: 'propio',
@@ -76,8 +72,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'easypay',
+    iconoSrc: '/productos/easypay.webp',
     sector: 'servicios',
-    icono: easypayIcono,
     nombre: 'EasyPay',
     url: 'https://easypay.djasoft.net.pe/',
     modelo: 'propio',
@@ -91,8 +87,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'otto-tonsmann',
+    iconoSrc: '/productos/otto-tonsmann.webp',
     sector: 'educación',
-    icono: ottoIcono,
     nombre: 'Otto Tonsmann',
     url: 'https://otto-tonsmann.web.app/',
     modelo: 'cliente',
@@ -108,8 +104,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'coneri',
+    iconoSrc: '/productos/coneri.webp',
     sector: 'energía',
-    icono: coneriIcono,
     nombre: 'CONERI',
     url: 'https://coneri.pe/',
     modelo: 'cliente',
@@ -125,8 +121,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'master-color',
+    iconoSrc: '/productos/master-color.webp',
     sector: 'retail',
-    icono: masterColorIcono,
     nombre: 'Master Color',
     url: 'https://www.mastercolor.net.pe/',
     modelo: 'cliente',
@@ -143,8 +139,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'agenda-eh',
+    iconoSrc: '/productos/agenda-eh.svg',
     sector: 'servicios',
-    iconoSvg: '/productos/agenda-eh.svg',
     nombre: 'Agenda EH',
     url: 'https://agenda-eh.web.app/',
     modelo: 'propio',
@@ -158,8 +154,8 @@ export const productos: Producto[] = [
   },
   {
     id: 'surgimed',
+    iconoSrc: '/productos/surgimed.webp',
     sector: 'salud',
-    icono: surgimedIcono,
     nombre: 'SURGIMED',
     url: 'https://surgimed-pe.web.app/',
     modelo: 'cliente',
