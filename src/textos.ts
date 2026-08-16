@@ -10,9 +10,10 @@
 export const PERFIL_TECNICO = 'https://danielmoranv.github.io';
 
 export const s = {
-  titulo: 'Djasoft — Software de gestión para empresas en Piura y Sullana',
+  titulo: 'Djasoft — Software de gestión para empresas en Sullana y Piura',
   descripcion:
-    'Desarrollo de software de gestión para empresas de Piura, Sullana e Ignacio Escudero: ' +
+    'Desarrollo de software de gestión desde Sullana, para empresas de Piura e Ignacio ' +
+    'Escudero: ' +
     'ERP, planillas, facturación electrónica ante SUNAT y automatización sobre los sistemas ' +
     'que ya usan. Ocho sistemas en producción, abribles ahora mismo.',
 
@@ -28,7 +29,8 @@ export const s = {
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
   heroEntrada:
-    'Soy Daniel Morán Vílchez y desarrollo desde Piura, bajo la marca Djasoft. He puesto a ' +
+    'Soy Daniel Morán Vílchez y desarrollo desde Sullana, Piura, bajo la marca Djasoft. He ' +
+    'puesto a ' +
     'funcionar sistemas en institutos, clínicas, distribuidoras, restaurantes y empresas de ' +
     'energía solar: ERPs, planillas, facturación electrónica ante SUNAT, y automatización ' +
     'alrededor de lo que ya usan, sin apagarlo.',
@@ -120,15 +122,16 @@ export const s = {
     'Le diré con franqueza si le sirve uno de estos productos, si hay que construirlo, o si ' +
     'lo que necesita no es algo que yo venda.',
   contactoCorreo: 'Correo',
-  contactoUbicacion: 'Piura · Sullana · Ignacio Escudero, Perú',
+  contactoUbicacion: 'Sullana, Piura — Perú',
   /*
     El ambito va en texto visible, no solo en los datos estructurados: Google
     ignora un lugar que solo aparece en el marcado, y para una busqueda local
     -"sistema de facturacion en Sullana"- esta frase es la que compite.
   */
   contactoAmbito:
-    'Trabajo con empresas de Piura, Sullana e Ignacio Escudero, y con el resto del Perú en ' +
-    'remoto. Cuando hay que estar delante del sistema, se está.',
+    'Estoy en Sullana y trabajo con empresas de toda la región: Piura, Ignacio Escudero y ' +
+    'alrededores, y el resto del Perú en remoto. Cuando hay que estar delante del sistema, ' +
+    'se está.',
 
   piePerfil: 'Perfil técnico',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',
