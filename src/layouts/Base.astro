@@ -99,6 +99,17 @@ const negocio = {
     <title>{s.titulo}</title>
     <meta name="description" content={s.descripcion} />
     <link rel="canonical" href={canonica} />
+    <!--
+      Antes que cualquier estilo o marcado: la preferencia guardada se escribe
+      en la raiz antes del primer pintado. Sin esto, quien haya elegido claro
+      ve un destello oscuro en cada carga, y una marca que parpadea se ve peor
+      que una sin conmutador.
+    -->
+    <script is:inline>
+      const t = localStorage.getItem('tema');
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    </script>
+
     <!-- Precargadas: son dos peticiones y 74 KB, y sin esto el titular grande
          parpadea al cambiar de la fuente de respaldo a Archivo. -->
     <link
@@ -157,7 +168,17 @@ const negocio = {
         class="mx-auto flex max-w-[var(--container-ficha)] flex-col gap-4 px-6 py-10 text-[0.8125rem] sm:flex-row sm:items-center sm:justify-between"
         style="color: var(--tinta2);"
       >
-        <p class="rotulo text-[1.0625rem]" style="color: var(--tinta);">Djasoft</p>
+        <div class="flex flex-wrap items-center gap-4">
+          <p class="rotulo text-[1.0625rem]" style="color: var(--tinta);">Djasoft</p>
+          <!-- El segundo grupo de tema: el del menu solo existe en movil, y en
+               escritorio el panel esta oculto. El script sincroniza los dos. -->
+          <fieldset class="tema">
+            <legend class="sr-only">{s.temaLeyenda}</legend>
+            <button type="button" data-tema="light" aria-pressed="false">{s.temaClaro}</button>
+            <button type="button" data-tema="dark" aria-pressed="false">{s.temaOscuro}</button>
+            <button type="button" data-tema="system" aria-pressed="true">{s.temaSistema}</button>
+          </fieldset>
+        </div>
         <nav class="flex flex-wrap gap-x-5 gap-y-2">
           <a class="hover:underline" href={PERFIL_TECNICO} target="_blank" rel="noopener noreferrer">
             {s.piePerfil}
@@ -167,5 +188,55 @@ const negocio = {
         </nav>
       </div>
     </footer>
+
+    <!--
+      El conmutador. Tres estados reales; «sistema» es la AUSENCIA de atributo
+      en la raiz y de clave en localStorage, asi que sigue al sistema en vivo
+      sin escuchar nada. Elegir claro gana sobre un sistema en oscuro gracias
+      al :not([data-theme='light']) del CSS.
+
+      Hay dos grupos de botones —el del menu movil y el del pie— porque el
+      panel del menu esta oculto en escritorio. Se sincronizan los dos.
+
+      Es el unico JavaScript del sitio.
+    -->
+    <script is:inline>
+      (() => {
+        const raiz = document.documentElement;
+        const grupos = document.querySelectorAll('.tema');
+        if (!grupos.length) return;
+        const metas = document.querySelectorAll('meta[name="theme-color"]');
+
+        const aplicar = (v) => {
+          if (v === 'system') {
+            raiz.removeAttribute('data-theme');
+            localStorage.removeItem('tema');
+          } else {
+            raiz.dataset.theme = v;
+            localStorage.setItem('tema', v);
+          }
+          const oscuro =
+            v === 'dark' ||
+            (v === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+          metas.forEach((m) => {
+            m.removeAttribute('media');
+            m.content = oscuro ? '#101820' : '#f7f2e9';
+          });
+          grupos.forEach((g) =>
+            g
+              .querySelectorAll('button')
+              .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tema === v)))
+          );
+        };
+
+        aplicar(localStorage.getItem('tema') ?? 'system');
+        grupos.forEach((g) =>
+          g.addEventListener('click', (e) => {
+            const b = e.target.closest('button[data-tema]');
+            if (b) aplicar(b.dataset.tema);
+          })
+        );
+      })();
+    </script>
   </body>
 </html>

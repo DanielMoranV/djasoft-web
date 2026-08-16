@@ -73,6 +73,7 @@
   --color-senal-txt-oscuro: #e0a75e;
   --color-linea-oscuro: #2c3a46;
   --color-sobre-marca-oscuro: #ede6d9;
+  --color-banda-oscuro: #17303f;
 
   /* Escala tipografica: pasos declarados, no un tamaño por capricho. */
   --text-rotulo: clamp(2.75rem, 8vw, 6rem);
@@ -96,7 +97,7 @@
 
 /* Tokens semanticos: claro por defecto. */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --papel: var(--color-papel-claro);
   --papel2: var(--color-papel2-claro);
   --tinta: var(--color-tinta-claro);
@@ -134,9 +135,21 @@
   --paso-respiro: 8rem;
 }
 
-/* El modo oscuro solo reasigna tokens ya definidos arriba. */
+/*
+  Tres estados reales de tema: claro, oscuro y sistema.
+
+  «Sistema» es la AUSENCIA de data-theme en la raiz, asi que sigue al sistema
+  en vivo sin escuchar nada. El :not([data-theme='light']) es lo que permite
+  que elegir claro gane sobre un sistema puesto en oscuro; sin el, quien elija
+  claro en un movil en oscuro no consigue nada.
+
+  Importa mas aqui que en el perfil tecnico: la calidez de esta direccion vive
+  en el papel, asi que quien llegue con el movil en oscuro no veria nunca la
+  marca como esta disenada.
+*/
+/* (2) Oscuro del sistema, acotado: no gana sobre un claro elegido a mano. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --papel: var(--color-papel-oscuro);
     --papel2: var(--color-papel2-oscuro);
     --tinta: var(--color-tinta-oscuro);
@@ -147,8 +160,25 @@
     --senal-txt: var(--color-senal-txt-oscuro);
     --linea: var(--color-linea-oscuro);
     --sobre-marca: var(--color-sobre-marca-oscuro);
-    --banda: #17303f;
+    --banda: var(--color-banda-oscuro);
+    color-scheme: dark;
   }
+}
+
+/* (3) Oscuro elegido a mano. */
+:root[data-theme='dark'] {
+  --papel: var(--color-papel-oscuro);
+  --papel2: var(--color-papel2-oscuro);
+  --tinta: var(--color-tinta-oscuro);
+  --tinta2: var(--color-tinta2-oscuro);
+  --marca: var(--color-marca-oscuro);
+  --marca-honda: var(--color-marca-honda-oscuro);
+  --senal: var(--color-senal-oscuro);
+  --senal-txt: var(--color-senal-txt-oscuro);
+  --linea: var(--color-linea-oscuro);
+  --sobre-marca: var(--color-sobre-marca-oscuro);
+  --banda: var(--color-banda-oscuro);
+  color-scheme: dark;
 }
 
 @media (min-width: 768px) {
@@ -273,20 +303,117 @@
   }
 }
 
-/* Los enlaces de seccion se deslizan en movil en vez de esconderse: el
-   telefono es justo donde llega quien pincha desde WhatsApp. */
-.barra-enlaces {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+
+/* ------------------------------------------------- menu y control de tema */
+
+/*
+  Hamburguesa sin una linea de JavaScript: <details> hace el estado y
+  <summary> es el boton, con semantica y teclado de serie. En escritorio el
+  panel no se usa —los enlaces van sueltos en la barra— y el resumen se oculta.
+
+  Contacto se queda FUERA del panel a proposito: en movil el control mas
+  valioso es que te escriban, y esconderlo detras de dos toques cuesta
+  clientes. Las secciones si pueden esconderse; el boton de contacto no.
+*/
+.menu > summary {
+  position: relative;
+  list-style: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -0.5rem;
+  cursor: pointer;
 }
 
-.barra-enlaces::-webkit-scrollbar {
+.menu > summary::-webkit-details-marker {
   display: none;
 }
 
-.barra-enlaces > a {
-  white-space: nowrap;
+/*
+  Tres trazos que se cruzan al abrir, sin JS: solo el estado de <details>.
+
+  Van posicionados absolutos y no como filas de rejilla. Con rejilla, el
+  primer trazo no lleva margen superior y los otros si, asi que las filas
+  quedaban a distancias distintas y al girar no se cruzaban en el centro:
+  salia un `>` en vez de un aspa.
+*/
+.menu .trazo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.25rem;
+  height: 2px;
+  margin-left: -0.625rem;
+  margin-top: -1px;
+  background: var(--tinta);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.menu .trazo:nth-child(1) {
+  transform: translateY(-7px);
+}
+
+.menu .trazo:nth-child(3) {
+  transform: translateY(7px);
+}
+
+.menu[open] .trazo:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.menu[open] .trazo:nth-child(2) {
+  opacity: 0;
+}
+
+.menu[open] .trazo:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.menu {
+  position: static;
+}
+
+.menu-panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--papel);
+  border-bottom: 1px solid var(--linea);
+  padding: 0.5rem 1.5rem 1.5rem;
+}
+
+.menu-panel a {
+  display: block;
+  padding: 0.875rem 0;
+  color: var(--tinta);
+  border-bottom: 1px solid var(--linea);
+}
+
+/* Tres estados, no un interruptor: «sistema» tiene que poder recuperarse. */
+.tema {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--linea);
+  padding: 0;
+  margin: 0;
+}
+
+.tema button {
+  font-family: var(--font-rotulo);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+  color: var(--tinta2);
+  background: transparent;
+  cursor: pointer;
+}
+
+.tema button + button {
+  border-left: 1px solid var(--linea);
+}
+
+.tema button[aria-pressed='true'] {
+  background: var(--tinta);
+  color: var(--papel);
 }

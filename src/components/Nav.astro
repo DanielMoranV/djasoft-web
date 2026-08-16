@@ -2,6 +2,8 @@
 import { s } from '../textos';
 
 // El orden sigue al de la pagina: problema, oferta, prueba, catalogo.
+// La etiqueta del menu puede ser mas corta que el titulo de la seccion:
+// «Por que contratarme» en caja alta rompia la barra en movil.
 const enlaces = [
   { href: '#resuelvo', texto: s.navQueResuelvo },
   { href: '#servicios', texto: s.navServicios },
@@ -10,11 +12,19 @@ const enlaces = [
 ];
 ---
 
+<!--
+  <summary> tiene que ser el PRIMER hijo de <details>. Al meterlo dentro del
+  <nav> el navegador inyectaba su propio resumen y salia un «Detalles» suelto
+  con su triangulo. Por eso <details> envuelve solo el boton y el panel, y el
+  panel se posiciona contra la barra, que ya es sticky.
+-->
 <header class="barra">
-  <nav class="mx-auto flex h-14 max-w-[var(--container-ficha)] items-center gap-6 px-6">
+  <nav class="mx-auto flex h-14 max-w-[var(--container-ficha)] items-center gap-4 px-6">
     <a href="/" class="rotulo shrink-0 text-[1.0625rem]" style="color: var(--tinta);">Djasoft</a>
 
-    <div class="barra-enlaces etiqueta min-w-0 flex-1">
+    <!-- En escritorio los enlaces viven sueltos en la barra; en movil los
+         sirve el panel de la hamburguesa. -->
+    <div class="etiqueta ml-auto hidden items-center gap-5 md:flex">
       {
         enlaces.map((e) => (
           <a href={e.href} class="hover:underline" style="color: var(--tinta2);">
@@ -24,12 +34,35 @@ const enlaces = [
       }
     </div>
 
+    <!-- Contacto fuera del panel a proposito: en movil el control mas valioso
+         es que te escriban, y esconderlo detras de dos toques cuesta clientes. -->
     <a
       href="#contacto"
-      class="etiqueta shrink-0 px-3 py-2"
+      class="etiqueta ml-auto shrink-0 px-3 py-2 md:ml-0"
       style="background: var(--senal); color: var(--color-tinta-claro);"
     >
       {s.navContacto}
     </a>
+
+    <details class="menu md:hidden">
+      <summary aria-label={s.menuAbrir}>
+        <span class="trazo" aria-hidden="true"></span>
+        <span class="trazo" aria-hidden="true"></span>
+        <span class="trazo" aria-hidden="true"></span>
+      </summary>
+
+      <div class="menu-panel etiqueta">
+        {enlaces.map((e) => <a href={e.href}>{e.texto}</a>)}
+
+        <a href="tel:+51948860381">{s.contactoTelefono}</a>
+
+        <fieldset class="tema mt-5">
+          <legend class="sr-only">{s.temaLeyenda}</legend>
+          <button type="button" data-tema="light" aria-pressed="false">{s.temaClaro}</button>
+          <button type="button" data-tema="dark" aria-pressed="false">{s.temaOscuro}</button>
+          <button type="button" data-tema="system" aria-pressed="true">{s.temaSistema}</button>
+        </fieldset>
+      </div>
+    </details>
   </nav>
 </header>

@@ -24,13 +24,21 @@ export const s = {
   /* Repetido por todo el sitio: el gesto de abrir algo real. */
   abrir: 'Abrir',
 
+  menuAbrir: 'Abrir el menú',
+  temaLeyenda: 'Tema de la página',
+  temaClaro: 'Claro',
+  temaOscuro: 'Oscuro',
+  temaSistema: 'Sistema',
+
   indiceEtiqueta: 'sistemas en producción',
   indiceTitulo: 'Cada enlace abre el producto real, no una captura.',
   bandaClientes: 'Empresas que lo pagaron y lo siguen usando',
   bandaProductos: 'Productos propios',
 
   navQueResuelvo: 'Qué resuelvo',
-  navServicios: 'Por qué contratarme',
+  /* Mas corta que el titulo de la seccion a proposito: «Por qué contratarme»
+     en caja alta con este espaciado rompia la barra. */
+  navServicios: 'Servicios',
   navClientes: 'Casos',
   navProductos: 'Proyectos',
   navContacto: 'Contacto',
