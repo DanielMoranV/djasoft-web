@@ -5,11 +5,14 @@ import Logo from './Logo.astro';
 // El orden sigue al de la pagina: problema, oferta, prueba, catalogo.
 // La etiqueta del menu puede ser mas corta que el titulo de la seccion:
 // «Por que contratarme» en caja alta rompia la barra en movil.
+// Con "/" delante a proposito: son anclas de la home, y sin el prefijo
+// rompian en cualquier otra pagina (el navegador buscaba el id en la
+// pagina actual en vez de ir a la home primero).
 const enlaces = [
-  { href: '#resuelvo', texto: s.navQueResuelvo },
-  { href: '#servicios', texto: s.navServicios },
-  { href: '#clientes', texto: s.navClientes },
-  { href: '#productos', texto: s.navProductos },
+  { href: '/#resuelvo', texto: s.navQueResuelvo },
+  { href: '/#servicios', texto: s.navServicios },
+  { href: '/#clientes', texto: s.navClientes },
+  { href: '/#productos', texto: s.navProductos },
 ];
 ---
 
@@ -41,7 +44,7 @@ const enlaces = [
     <!-- Contacto fuera del panel a proposito: en movil el control mas valioso
          es que te escriban, y esconderlo detras de dos toques cuesta clientes. -->
     <a
-      href="#contacto"
+      href="/#contacto"
       class="etiqueta ml-auto shrink-0 px-3 py-2 md:ml-0"
       style="background: var(--senal); color: var(--color-tinta-claro);"
     >
