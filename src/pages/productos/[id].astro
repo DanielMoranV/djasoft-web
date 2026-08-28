@@ -14,7 +14,7 @@ const canonica = new URL(ruta, Astro.site);
 const otros = productos.filter((p) => p.id !== producto.id);
 
 const titulo = `${producto.nombre} — ${producto.es.que} · Djasoft`;
-const descripcion = `${producto.es.que}. ${producto.pagina.paraQuien}`;
+const descripcion = producto.pagina.metaDescripcion;
 
 /**
  * Igual regla que en Base.astro: solo se marca lo que tambien esta visible

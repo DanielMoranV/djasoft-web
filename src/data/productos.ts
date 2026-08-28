@@ -41,6 +41,8 @@ export interface Producto {
    * no adjetivos: cada una tiene que poder confirmarse abriendo el producto.
    */
   pagina: {
+    /** Meta description de la ficha: 155 caracteres máximo, Google la trunca. */
+    metaDescripcion: string;
     paraQuien: string;
     caracteristicas: string[];
   };
@@ -63,6 +65,9 @@ export const productos: Producto[] = [
         'datos de la empresa, con permisos por usuario.',
     },
     pagina: {
+      metaDescripcion:
+        'AlmaZen: ERP multiempresa con inventario, ventas, POS y facturación SUNAT, más un ' +
+        'asistente de IA con 29 herramientas. Software de Djasoft, Perú.',
       paraQuien:
         'Empresas con más de un local o más de un rubro que hoy llevan el inventario en ' +
         'hojas de cálculo o en un sistema que ya no alcanza: distribuidoras, tiendas con ' +
@@ -92,6 +97,9 @@ export const productos: Producto[] = [
         'WebSockets. Nadie recarga, nadie pregunta si ya salió el plato.',
     },
     pagina: {
+      metaDescripcion:
+        'Mozaico: gestión de restaurantes con comanda y cocina sincronizadas en tiempo real ' +
+        'por WebSockets. Software de Djasoft, Perú.',
       paraQuien:
         'Restaurantes y negocios de comida que todavía cruzan la comanda en papel entre el ' +
         'salón y la cocina, o que pierden pedidos y tiempo en ese cruce.',
@@ -118,6 +126,9 @@ export const productos: Producto[] = [
         'proceso que más horas administrativas consume cada mes.',
     },
     pagina: {
+      metaDescripcion:
+        'EasyPay: planillas, asistencia y horarios para automatizar la administración de ' +
+        'personal. Software de Djasoft, Perú.',
       paraQuien:
         'Empresas que calculan planillas a mano o en hojas de cálculo cada mes, y pierden ' +
         'horas conciliando asistencia, horarios y descuentos.',
@@ -146,6 +157,9 @@ export const productos: Producto[] = [
         'cada operación.',
     },
     pagina: {
+      metaDescripcion:
+        'Sistema de caja, comprobantes y padrón de alumnos para el Instituto Otto Tonsmann, ' +
+        'desarrollado por Djasoft.',
       paraQuien:
         'Institutos y centros educativos que llevan la caja y el padrón de alumnos en papel ' +
         'o en cuadernos separados.',
@@ -174,6 +188,9 @@ export const productos: Producto[] = [
         'con funciones que reaccionan a los cambios del catálogo.',
     },
     pagina: {
+      metaDescripcion:
+        'Web corporativa y panel de administración para CONERI, empresa de energía solar en ' +
+        'Piura, desarrollado por Djasoft.',
       paraQuien:
         'Empresas de energía solar u otro rubro técnico que necesitan mostrar catálogo, ' +
         'recibir cotizaciones y administrar contenido sin depender de un desarrollador para ' +
@@ -204,6 +221,9 @@ export const productos: Producto[] = [
     },
     nota: 'En desarrollo activo',
     pagina: {
+      metaDescripcion:
+        'Comercio electrónico y app móvil para Master Color, con chatbot de ventas. ' +
+        'Desarrollado por Djasoft.',
       paraQuien:
         'Comercios con tienda física y en línea que necesitan que ambas compartan el mismo ' +
         'catálogo, stock y pedidos, y que además vendan por app.',
@@ -230,6 +250,9 @@ export const productos: Producto[] = [
         'Gantt y proyectos. Diseñado con especificación técnica antes de escribir código.',
     },
     pagina: {
+      metaDescripcion:
+        'Agenda EH: gestión del tiempo con Matriz de Eisenhower y sincronización con Google ' +
+        'Calendar. Software de Djasoft.',
       paraQuien:
         'Profesionales y equipos pequeños que organizan su semana con la Matriz de ' +
         'Eisenhower y necesitan que eso viva sincronizado con Google Calendar, no en una ' +
@@ -258,6 +281,9 @@ export const productos: Producto[] = [
         'quirúrgico, con despliegue continuo desde el repositorio.',
     },
     pagina: {
+      metaDescripcion:
+        'Sitio institucional para SURGIMED, importador de material quirúrgico en Sullana, ' +
+        'desarrollado por Djasoft.',
       paraQuien:
         'Empresas importadoras o distribuidoras que necesitan presencia institucional seria ' +
         '—catálogo, certificaciones, contacto— sin mantenerla a mano cada vez que cambia algo.',

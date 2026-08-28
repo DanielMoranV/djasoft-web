@@ -162,4 +162,12 @@ export const s = {
   paginaIncluye: 'Qué incluye',
   paginaOtros: 'Otros proyectos',
   paginaVolver: 'Volver a proyectos',
+
+  /* Pagina 404. */
+  error404Titulo: 'Esto no existe.',
+  error404Texto:
+    'El enlace que seguiste no lleva a ninguna página de Djasoft. Puede que se haya movido, ' +
+    'o que nunca haya existido —dímelo por WhatsApp si crees que es un error mío.',
+  error404Inicio: 'Volver al inicio',
+  error404Proyectos: 'Ver los sistemas en producción',
 } as const;

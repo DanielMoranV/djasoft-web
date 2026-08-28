@@ -14,12 +14,15 @@ interface Props {
   ruta?: string;
   /** JSON-LD adicional al de la home (ProfessionalService), uno por objeto. */
   datosEstructurados?: object[];
+  /** Para la 404: que no se indexe si algun crawler la alcanza igual. */
+  noindex?: boolean;
 }
 const {
   titulo = s.titulo,
   descripcion = s.descripcion,
   ruta = '/',
   datosEstructurados = [],
+  noindex = false,
 } = Astro.props;
 
 const canonica = new URL(ruta, Astro.site);
@@ -118,6 +121,7 @@ const negocio = {
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={canonica} />
+    {noindex && <meta name="robots" content="noindex" />}
     <!--
       Antes que cualquier estilo o marcado: la preferencia guardada se escribe
       en la raiz antes del primer pintado. Sin esto, quien haya elegido claro
