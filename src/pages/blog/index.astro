@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Flecha from '../../components/Flecha.astro';
+import { s } from '../../textos';
+
+const posts = (await getCollection('blog', ({ data }) => !data.borrador)).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
+);
+
+const ruta = '/blog';
+const titulo = 'Blog · Djasoft';
+const descripcion =
+  'Respuestas concretas a preguntas reales sobre software de gestión, modernización de ' +
+  'sistemas y automatización para empresas peruanas.';
+
+const migas = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: s.migaInicio, item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL(ruta, Astro.site).href },
+  ],
+};
+
+const fechaLarga = (f: Date) =>
+  new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long', year: 'numeric' }).format(f);
+---
+
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} datosEstructurados={[migas]}>
+  <nav aria-label="Migas de pan" class="px-6 pt-8">
+    <ol class="etiqueta mx-auto flex max-w-[var(--container-prosa)] flex-wrap gap-x-2" style="color: var(--tinta2);">
+      <li><a href="/" class="hover:underline">{s.migaInicio}</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" style="color: var(--tinta);">Blog</li>
+    </ol>
+  </nav>
+
+  <section class="px-6" style="padding-top: 2.5rem; padding-bottom: var(--paso-respiro);">
+    <div class="mx-auto max-w-[var(--container-prosa)]">
+      <p class="etiqueta" style="color: var(--senal-txt);">Blog</p>
+      <h1 class="mt-3" style="font-size: var(--text-seccion); line-height: 1.02;">
+        Preguntas reales, respuestas directas.
+      </h1>
+      <p class="prosa mt-6">
+        Nada de relleno: cada artículo responde una pregunta concreta que me han hecho, con la
+        evidencia detrás —no la teoría de un curso de gestión.
+      </p>
+
+      <ul class="mt-14 flex flex-col gap-12">
+        {
+          posts.map((post) => (
+            <li class="pt-6" style="border-top: 1px solid var(--linea);">
+              <p class="etiqueta" style="color: var(--tinta2);">{fechaLarga(post.data.fecha)}</p>
+              <h2 class="mt-2" style="font-size: var(--text-ficha); line-height: 1.15;">
+                <a href={`/blog/${post.id}`} class="hover:underline">
+                  {post.data.titulo}
+                </a>
+              </h2>
+              <p class="mt-3 text-[1rem] leading-[1.6]" style="color: var(--tinta2);">
+                {post.data.descripcion}
+              </p>
+              <a
+                href={`/blog/${post.id}`}
+                class="etiqueta mt-4 inline-flex items-center gap-1.5 underline decoration-[3px] underline-offset-[6px]"
+                style="color: var(--tinta); text-decoration-color: var(--senal);"
+              >
+                Leer
+                <Flecha />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

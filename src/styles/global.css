@@ -417,3 +417,66 @@
   background: var(--tinta);
   color: var(--papel);
 }
+
+/* ------------------------------------------------------------- articulo */
+
+/*
+  Markdown renderizado de una entrada de blog. Sin plugin de tipografia:
+  h1/h2/h3 ya salen en Archivo 800 por la regla de @layer base de arriba,
+  asi que aqui solo falta el ritmo vertical y los elementos que el body no
+  cubre (listas, enlaces dentro de prosa, citas).
+*/
+.articulo {
+  max-width: var(--container-prosa);
+  font-size: var(--text-prosa);
+  line-height: 1.62;
+}
+
+.articulo > * + * {
+  margin-top: 1.5em;
+}
+
+.articulo h2 {
+  margin-top: 2.25em;
+  font-size: 1.5rem;
+}
+
+.articulo h3 {
+  margin-top: 1.75em;
+  font-size: 1.1875rem;
+}
+
+.articulo ul,
+.articulo ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  padding-left: 1.4em;
+}
+
+.articulo ul {
+  list-style: disc;
+}
+
+.articulo ol {
+  list-style: decimal;
+}
+
+.articulo a {
+  text-decoration: underline;
+  text-decoration-color: var(--senal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.articulo strong {
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.articulo blockquote {
+  border-left: 2px solid var(--senal);
+  padding-left: 1.25em;
+  color: var(--tinta2);
+  font-style: italic;
+}

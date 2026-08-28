@@ -159,6 +159,7 @@ export const s = {
   pieSullana: 'Software en Sullana',
   piePiura: 'Software en Piura',
   piePeru: 'Software a medida en Perú',
+  pieBlog: 'Blog',
 
   /* Ficha individual de producto (/productos/{id}). */
   migaInicio: 'Inicio',
