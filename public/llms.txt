@@ -30,17 +30,25 @@ bytes mientras la aplicación de siempre sigue abierta en cada escritorio.
 
 ## Sistemas en producción
 
+Cada uno tiene además una ficha propia en djasoft.net.pe, con para quién es y qué incluye.
+
 - [AlmaZen](https://almazenapp.djasoft.net.pe/) — ERP multiempresa: inventario, compras,
   ventas, punto de venta y facturación SUNAT, con asistente de IA de 29 herramientas.
+  Ficha: https://djasoft.net.pe/productos/almazen
 - [Mozaico](https://mozaicopro.djasoft.net.pe/) — gestión de restaurantes; salón y cocina
-  sincronizados por WebSockets.
+  sincronizados por WebSockets. Ficha: https://djasoft.net.pe/productos/mozaicopro
 - [EasyPay](https://easypay.djasoft.net.pe/) — planillas, asistencia y horarios.
+  Ficha: https://djasoft.net.pe/productos/easypay
 - [Agenda EH](https://agenda-eh.web.app/) — gestión del tiempo con Google Calendar.
+  Ficha: https://djasoft.net.pe/productos/agenda-eh
 - [Master Color](https://www.mastercolor.net.pe/) — comercio electrónico con app móvil.
+  Ficha: https://djasoft.net.pe/productos/master-color
 - [Otto Tonsmann](https://otto-tonsmann.web.app/) — caja, comprobantes y padrón de alumnos.
+  Ficha: https://djasoft.net.pe/productos/otto-tonsmann
 - [CONERI](https://coneri.pe/) — web y panel para una empresa de energía solar.
+  Ficha: https://djasoft.net.pe/productos/coneri
 - [SURGIMED](https://surgimed-pe.web.app/) — sitio de un importador de material quirúrgico
-  en Sullana.
+  en Sullana. Ficha: https://djasoft.net.pe/productos/surgimed
 
 ## Contacto
 

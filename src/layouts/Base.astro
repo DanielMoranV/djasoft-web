@@ -3,7 +3,25 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { s, PERFIL_TECNICO } from '../textos';
 
-const canonica = new URL('/', Astro.site);
+/**
+ * Props opcionales para paginas distintas de la home (fichas de producto,
+ * casos). Sin props, el layout se comporta exactamente como antes.
+ */
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  ruta?: string;
+  /** JSON-LD adicional al de la home (ProfessionalService), uno por objeto. */
+  datosEstructurados?: object[];
+}
+const {
+  titulo = s.titulo,
+  descripcion = s.descripcion,
+  ruta = '/',
+  datosEstructurados = [],
+} = Astro.props;
+
+const canonica = new URL(ruta, Astro.site);
 
 /**
  * Tarjeta de enlace, generada una vez y commiteada en public/: un PNG que no
@@ -96,8 +114,8 @@ const negocio = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{s.titulo}</title>
-    <meta name="description" content={s.descripcion} />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
     <link rel="canonical" href={canonica} />
     <!--
       Antes que cualquier estilo o marcado: la preferencia guardada se escribe
@@ -133,8 +151,8 @@ const negocio = {
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Djasoft" />
-    <meta property="og:title" content={s.titulo} />
-    <meta property="og:description" content={s.descripcion} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonica} />
     <meta property="og:locale" content="es_PE" />
     <meta property="og:image" content={tarjeta} />
@@ -145,6 +163,11 @@ const negocio = {
     <meta name="twitter:image" content={tarjeta} />
 
     <script type="application/ld+json" set:html={JSON.stringify(negocio)} is:inline />
+    {
+      datosEstructurados.map((d) => (
+        <script type="application/ld+json" set:html={JSON.stringify(d)} is:inline />
+      ))
+    }
 
     <meta name="author" content="Daniel Morán Vílchez" />
     <meta name="theme-color" content="#f7f2e9" media="(prefers-color-scheme: light)" />

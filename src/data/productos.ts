@@ -35,6 +35,15 @@ export interface Producto {
   es: { que: string; detalle: string };
   /** Nota al pie, cuando el estado necesita explicacion. */
   nota?: string;
+  /**
+   * Contenido propio de la ficha individual (/productos/{id}), mas largo que
+   * la tarjeta de la home. `caracteristicas` son afirmaciones verificables,
+   * no adjetivos: cada una tiene que poder confirmarse abriendo el producto.
+   */
+  pagina: {
+    paraQuien: string;
+    caracteristicas: string[];
+  };
 }
 
 export const productos: Producto[] = [
@@ -53,6 +62,19 @@ export const productos: Producto[] = [
         'Incluye un asistente conversacional con 29 herramientas de solo lectura sobre los ' +
         'datos de la empresa, con permisos por usuario.',
     },
+    pagina: {
+      paraQuien:
+        'Empresas con más de un local o más de un rubro que hoy llevan el inventario en ' +
+        'hojas de cálculo o en un sistema que ya no alcanza: distribuidoras, tiendas con ' +
+        'varias sucursales, negocios que venden al por mayor y al detalle.',
+      caracteristicas: [
+        'Inventario en tiempo real por almacén y por empresa, sin hojas de cálculo paralelas.',
+        'Compras y ventas con control de stock automático, kardex y valorización.',
+        'Punto de venta con boleta y factura electrónica ante SUNAT, integrado al inventario.',
+        'Multiempresa: varias razones sociales o locales desde una sola instalación, con datos separados.',
+        'Asistente de IA con 29 herramientas de solo lectura sobre datos reales —stock, ventas, márgenes, deuda— con permisos por usuario.',
+      ],
+    },
   },
   {
     id: 'mozaicopro',
@@ -69,6 +91,17 @@ export const productos: Producto[] = [
         'instante en la pantalla de cocina, y cada cambio de estado vuelve al salón por ' +
         'WebSockets. Nadie recarga, nadie pregunta si ya salió el plato.',
     },
+    pagina: {
+      paraQuien:
+        'Restaurantes y negocios de comida que todavía cruzan la comanda en papel entre el ' +
+        'salón y la cocina, o que pierden pedidos y tiempo en ese cruce.',
+      caracteristicas: [
+        'Toma de pedidos en mesa desde tablet o celular.',
+        'Pantalla de cocina que recibe el pedido al instante, sin recargar.',
+        'Sincronización salón-cocina por WebSockets: cada cambio de estado —en preparación, listo, servido— vuelve solo.',
+        'Gestión de mesas, turnos y cierre de caja.',
+      ],
+    },
   },
   {
     id: 'easypay',
@@ -83,6 +116,17 @@ export const productos: Producto[] = [
       detalle:
         'Personal, control de asistencia, horarios y cálculo de planillas. Automatiza el ' +
         'proceso que más horas administrativas consume cada mes.',
+    },
+    pagina: {
+      paraQuien:
+        'Empresas que calculan planillas a mano o en hojas de cálculo cada mes, y pierden ' +
+        'horas conciliando asistencia, horarios y descuentos.',
+      caracteristicas: [
+        'Registro de personal y control de asistencia.',
+        'Horarios y turnos configurables por empleado o por área.',
+        'Cálculo automático de planillas: sueldos, descuentos y aportes.',
+        'Reportes listos para presentar o auditar.',
+      ],
     },
   },
   {
@@ -101,6 +145,17 @@ export const productos: Producto[] = [
         'alumnos, con control de acceso por roles, inventario transaccional y auditoría de ' +
         'cada operación.',
     },
+    pagina: {
+      paraQuien:
+        'Institutos y centros educativos que llevan la caja y el padrón de alumnos en papel ' +
+        'o en cuadernos separados.',
+      caracteristicas: [
+        'Caja y emisión de comprobantes por cada cobro.',
+        'Padrón de alumnos con historial de pagos.',
+        'Control de acceso por roles: caja, dirección y matrícula ven solo lo que les corresponde.',
+        'Inventario transaccional y auditoría de cada operación registrada.',
+      ],
+    },
   },
   {
     id: 'coneri',
@@ -117,6 +172,18 @@ export const productos: Producto[] = [
         'Sitio, catálogo de productos con carrito de cotización y panel de administración ' +
         'para una empresa de energía solar en Piura. Las imágenes huérfanas se limpian solas ' +
         'con funciones que reaccionan a los cambios del catálogo.',
+    },
+    pagina: {
+      paraQuien:
+        'Empresas de energía solar u otro rubro técnico que necesitan mostrar catálogo, ' +
+        'recibir cotizaciones y administrar contenido sin depender de un desarrollador para ' +
+        'cada cambio.',
+      caracteristicas: [
+        'Sitio institucional con catálogo de productos.',
+        'Carrito de cotización: el visitante arma su pedido y lo envía sin pasar por WhatsApp manual.',
+        'Panel de administración para el catálogo y el contenido del sitio.',
+        'Limpieza automática de imágenes huérfanas cuando cambia el catálogo, con Cloud Functions.',
+      ],
     },
   },
   {
@@ -136,6 +203,17 @@ export const productos: Producto[] = [
         'que el catálogo público.',
     },
     nota: 'En desarrollo activo',
+    pagina: {
+      paraQuien:
+        'Comercios con tienda física y en línea que necesitan que ambas compartan el mismo ' +
+        'catálogo, stock y pedidos, y que además vendan por app.',
+      caracteristicas: [
+        'Tienda en línea con gestión de pedidos.',
+        'App móvil en Flutter para clientes o para el equipo de campo.',
+        'Chatbot de ventas que responde disponibilidad y precios, limitado al catálogo público.',
+        'Soporte técnico de campo integrado al mismo sistema.',
+      ],
+    },
   },
   {
     id: 'agenda-eh',
@@ -150,6 +228,18 @@ export const productos: Producto[] = [
       detalle:
         'Matriz de Eisenhower con sincronización bidireccional con Google Calendar, vista ' +
         'Gantt y proyectos. Diseñado con especificación técnica antes de escribir código.',
+    },
+    pagina: {
+      paraQuien:
+        'Profesionales y equipos pequeños que organizan su semana con la Matriz de ' +
+        'Eisenhower y necesitan que eso viva sincronizado con Google Calendar, no en una ' +
+        'hoja aparte.',
+      caracteristicas: [
+        'Matriz de Eisenhower —urgente/importante— para priorizar tareas.',
+        'Sincronización bidireccional con Google Calendar: un cambio en cualquiera de los dos se refleja en el otro.',
+        'Vista Gantt para proyectos con varias tareas y fechas.',
+        'Inicio de sesión con la cuenta de Google mediante OAuth 2.0.',
+      ],
     },
   },
   {
@@ -166,6 +256,17 @@ export const productos: Producto[] = [
       detalle:
         'Sitio institucional de un importador de material de osteosíntesis y equipamiento ' +
         'quirúrgico, con despliegue continuo desde el repositorio.',
+    },
+    pagina: {
+      paraQuien:
+        'Empresas importadoras o distribuidoras que necesitan presencia institucional seria ' +
+        '—catálogo, certificaciones, contacto— sin mantenerla a mano cada vez que cambia algo.',
+      caracteristicas: [
+        'Sitio institucional con catálogo de material de osteosíntesis y equipamiento quirúrgico.',
+        'Despliegue continuo desde el repositorio: cada cambio se publica solo, sin subir archivos a mano.',
+        'Automatización de la publicación con GitHub Actions.',
+        'Hosting en Firebase.',
+      ],
     },
   },
 ];

@@ -154,4 +154,12 @@ export const s = {
   /* Etiquetado asi a proposito: deja claro que es otro publico y otro sitio. */
   piePerfil: 'Perfil técnico (para reclutadores)',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',
+
+  /* Ficha individual de producto (/productos/{id}). */
+  migaInicio: 'Inicio',
+  migaProyectos: 'Proyectos',
+  paginaParaQuien: 'Para quién es',
+  paginaIncluye: 'Qué incluye',
+  paginaOtros: 'Otros proyectos',
+  paginaVolver: 'Volver a proyectos',
 } as const;

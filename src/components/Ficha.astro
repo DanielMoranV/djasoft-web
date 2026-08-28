@@ -27,7 +27,7 @@ const { producto } = Astro.props;
   </div>
 
   <h3 class="mt-2" style="font-size: var(--text-ficha); line-height: 1.15;">
-    {producto.nombre}
+    <a href={`/productos/${producto.id}`} class="hover:underline">{producto.nombre}</a>
   </h3>
 
   {
