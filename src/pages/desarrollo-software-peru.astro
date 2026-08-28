@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Flecha from '../components/Flecha.astro';
+import { s } from '../textos';
+
+const ruta = '/desarrollo-software-peru';
+const titulo = 'Desarrollo de software a medida en Perú · Djasoft';
+const descripcion =
+  'Software a medida para empresas peruanas: facturación SUNAT, SIAGIE, SUSALUD. Remoto en ' +
+  'todo el Perú, con base en Piura.';
+
+const migas = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: s.migaInicio, item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Software a medida en Perú', item: new URL(ruta, Astro.site).href },
+  ],
+};
+---
+
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} datosEstructurados={[migas]}>
+  <nav aria-label="Migas de pan" class="px-6 pt-8">
+    <ol class="etiqueta mx-auto flex max-w-[var(--container-prosa)] flex-wrap gap-x-2" style="color: var(--tinta2);">
+      <li><a href="/" class="hover:underline">{s.migaInicio}</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" style="color: var(--tinta);">Software a medida en Perú</li>
+    </ol>
+  </nav>
+
+  <section class="px-6" style="padding-top: 2.5rem; padding-bottom: var(--paso-respiro);">
+    <div class="mx-auto max-w-[var(--container-prosa)]">
+      <p class="etiqueta" style="color: var(--senal-txt);">Perú, en remoto</p>
+      <h1 class="mt-3" style="font-size: var(--text-seccion); line-height: 1.02;">
+        Desarrollo de software a medida en Perú.
+      </h1>
+
+      <p class="prosa mt-6">
+        Ocho sistemas en producción, en institutos, clínicas, distribuidoras, restaurantes y
+        empresas de energía solar, resuelven algo que un software importado no cubre bien: la
+        normativa peruana. Con empresas de fuera de Piura y Sullana trabajo en remoto, sin que eso
+        cambie el resultado.
+      </p>
+
+      <div class="mt-12 pt-6" style="border-top: 1px solid var(--linea);">
+        <p class="etiqueta" style="color: var(--senal-txt);">Normativa que un SaaS importado no resuelve bien</p>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li class="pb-4 text-[1rem] leading-[1.6]" style="border-bottom: 1px solid var(--linea);">
+            <b>Facturación electrónica ante SUNAT</b>, integrada al inventario y al punto de venta.
+          </li>
+          <li class="pb-4 text-[1rem] leading-[1.6]" style="border-bottom: 1px solid var(--linea);">
+            <b>SIAGIE y MINEDU</b> en educación, <b>SUSALUD</b> en salud.
+          </li>
+          <li class="text-[1rem] leading-[1.6]">
+            <b>RENIEC y ubigeo</b>, y convivencia con sistemas heredados —un motor DBF propio
+            escribe en tablas FoxPro con bloqueo por rangos de bytes mientras la aplicación de
+            siempre sigue abierta en cada escritorio.
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-12 pt-6" style="border-top: 1px solid var(--linea);">
+        <p class="etiqueta" style="color: var(--senal-txt);">Dos casos, dos sectores</p>
+        <div class="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          <div>
+            <h2 style="font-size: var(--text-ficha); line-height: 1.15;">AlmaZen</h2>
+            <p class="mt-3 text-[1rem] leading-[1.6]">
+              ERP multiempresa con facturación electrónica ante SUNAT integrada al inventario y al
+              punto de venta, más un asistente de IA con 29 herramientas de solo lectura.
+            </p>
+            <a
+              href="/productos/almazen"
+              class="etiqueta mt-4 inline-flex items-center gap-1.5 underline decoration-[3px] underline-offset-[6px]"
+              style="color: var(--tinta); text-decoration-color: var(--senal);"
+            >
+              Ver la ficha
+              <Flecha />
+            </a>
+          </div>
+          <div>
+            <h2 style="font-size: var(--text-ficha); line-height: 1.15;">Otto Tonsmann</h2>
+            <p class="mt-3 text-[1rem] leading-[1.6]">
+              Caja, comprobantes y padrón de alumnos para un instituto, con control de acceso por
+              roles y auditoría de cada operación.
+            </p>
+            <a
+              href="/productos/otto-tonsmann"
+              class="etiqueta mt-4 inline-flex items-center gap-1.5 underline decoration-[3px] underline-offset-[6px]"
+              style="color: var(--tinta); text-decoration-color: var(--senal);"
+            >
+              Ver la ficha
+              <Flecha />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="https://wa.me/51948860381"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="etiqueta mt-12 inline-flex h-14 items-center gap-2 px-7"
+        style="background: var(--senal); color: var(--color-tinta-claro);"
+      >
+        {s.contactoWhatsapp} {s.contactoTelefono}
+        <Flecha />
+      </a>
+    </div>
+  </section>
+</Base>

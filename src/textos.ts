@@ -155,6 +155,11 @@ export const s = {
   piePerfil: 'Perfil técnico (para reclutadores)',
   pieDerechos: 'Djasoft — Daniel Morán Vílchez',
 
+  /* Paginas de SEO local, enlazadas desde el pie para que no queden huerfanas. */
+  pieSullana: 'Software en Sullana',
+  piePiura: 'Software en Piura',
+  piePeru: 'Software a medida en Perú',
+
   /* Ficha individual de producto (/productos/{id}). */
   migaInicio: 'Inicio',
   migaProyectos: 'Proyectos',

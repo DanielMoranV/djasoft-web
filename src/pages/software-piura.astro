@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import Flecha from '../components/Flecha.astro';
+import { s } from '../textos';
+
+const ruta = '/software-piura';
+const titulo = 'Desarrollo de software en Piura · Djasoft';
+const descripcion =
+  'Sistemas de gestión para empresas de la región Piura: ERP, automatización e integración de ' +
+  'sistemas. Caso real: CONERI, energía solar en Piura.';
+
+const migas = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: s.migaInicio, item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Software en Piura', item: new URL(ruta, Astro.site).href },
+  ],
+};
+---
+
+<Base titulo={titulo} descripcion={descripcion} ruta={ruta} datosEstructurados={[migas]}>
+  <nav aria-label="Migas de pan" class="px-6 pt-8">
+    <ol class="etiqueta mx-auto flex max-w-[var(--container-prosa)] flex-wrap gap-x-2" style="color: var(--tinta2);">
+      <li><a href="/" class="hover:underline">{s.migaInicio}</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page" style="color: var(--tinta);">Software en Piura</li>
+    </ol>
+  </nav>
+
+  <section class="px-6" style="padding-top: 2.5rem; padding-bottom: var(--paso-respiro);">
+    <div class="mx-auto max-w-[var(--container-prosa)]">
+      <p class="etiqueta" style="color: var(--senal-txt);">Región Piura</p>
+      <h1 class="mt-3" style="font-size: var(--text-seccion); line-height: 1.02;">
+        Desarrollo de software en Piura.
+      </h1>
+
+      <p class="prosa mt-6">
+        Atiendo empresas de toda la región de Piura, no solo de Sullana. Cuando hace falta estar
+        delante del sistema —instalar, capacitar al equipo, resolver algo en sitio— viajo; el
+        resto del trabajo, que es la mayoría, se resuelve en remoto sin perder tiempo de nadie.
+      </p>
+
+      <p class="prosa mt-5">
+        ERPs, planillas, facturación electrónica ante SUNAT, comercio electrónico y automatización
+        sobre lo que la empresa ya usa. El criterio es siempre el mismo: lo que funciona se queda
+        funcionando mientras se construye alrededor.
+      </p>
+
+      <div class="mt-12 pt-6" style="border-top: 1px solid var(--linea);">
+        <p class="etiqueta" style="color: var(--senal-txt);">Un caso en Piura</p>
+        <h2 class="mt-3" style="font-size: var(--text-ficha); line-height: 1.15;">CONERI</h2>
+        <p class="mt-3 text-[1rem] leading-[1.6]">
+          Sitio, catálogo de productos con carrito de cotización y panel de administración para
+          una empresa de energía solar en Piura. El visitante arma su pedido y lo envía sin pasar
+          por WhatsApp manual, y las imágenes huérfanas del catálogo se limpian solas.
+        </p>
+        <a
+          href="/productos/coneri"
+          class="etiqueta mt-4 inline-flex items-center gap-1.5 underline decoration-[3px] underline-offset-[6px]"
+          style="color: var(--tinta); text-decoration-color: var(--senal);"
+        >
+          Ver la ficha de CONERI
+          <Flecha />
+        </a>
+      </div>
+
+      <div class="mt-12 pt-6" style="border-top: 1px solid var(--linea);">
+        <p class="etiqueta" style="color: var(--senal-txt);">Qué puedo hacer por una empresa en Piura</p>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li class="pb-4 text-[1rem] leading-[1.6]" style="border-bottom: 1px solid var(--linea);">
+            Un sitio o panel a medida, como CONERI, con catálogo y cotización propios.
+          </li>
+          <li class="pb-4 text-[1rem] leading-[1.6]" style="border-bottom: 1px solid var(--linea);">
+            Poner en marcha AlmaZen, Mozaico o EasyPay con los datos reales de la empresa.
+          </li>
+          <li class="text-[1rem] leading-[1.6]">
+            Automatizar e integrar el sistema que ya tiene, sin apagarlo.
+          </li>
+        </ul>
+      </div>
+
+      <a
+        href="https://wa.me/51948860381"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="etiqueta mt-12 inline-flex h-14 items-center gap-2 px-7"
+        style="background: var(--senal); color: var(--color-tinta-claro);"
+      >
+        {s.contactoWhatsapp} {s.contactoTelefono}
+        <Flecha />
+      </a>
+    </div>
+  </section>
+</Base>

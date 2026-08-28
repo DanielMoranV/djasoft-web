@@ -192,6 +192,13 @@ const negocio = {
     <main id="contenido"><slot /></main>
 
     <footer style="border-top: 1px solid var(--linea);">
+      <div class="mx-auto max-w-[var(--container-ficha)] px-6 pt-8">
+        <nav class="etiqueta flex flex-wrap gap-x-5 gap-y-2" style="color: var(--tinta2);">
+          <a class="hover:underline" href="/software-sullana">{s.pieSullana}</a>
+          <a class="hover:underline" href="/software-piura">{s.piePiura}</a>
+          <a class="hover:underline" href="/desarrollo-software-peru">{s.piePeru}</a>
+        </nav>
+      </div>
       <div
         class="mx-auto flex max-w-[var(--container-ficha)] flex-col gap-4 px-6 py-10 text-[0.8125rem] sm:flex-row sm:items-center sm:justify-between"
         style="color: var(--tinta2);"
