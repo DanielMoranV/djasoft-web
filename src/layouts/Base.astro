@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import Logo from '../components/Logo.astro';
 import { s, PERFIL_TECNICO } from '../textos';
 
 /**
@@ -192,7 +193,10 @@ const negocio = {
         style="color: var(--tinta2);"
       >
         <div class="flex flex-wrap items-center gap-4">
-          <p class="rotulo text-[1.0625rem]" style="color: var(--tinta);">Djasoft</p>
+          <p class="rotulo flex items-center gap-2 text-[1.0625rem]" style="color: var(--tinta);">
+            <Logo size={20} />
+            Djasoft
+          </p>
           <!-- El segundo grupo de tema: el del menu solo existe en movil, y en
                escritorio el panel esta oculto. El script sincroniza los dos. -->
           <fieldset class="tema">

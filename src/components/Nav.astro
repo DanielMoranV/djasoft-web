@@ -1,5 +1,6 @@
 ---
 import { s } from '../textos';
+import Logo from './Logo.astro';
 
 // El orden sigue al de la pagina: problema, oferta, prueba, catalogo.
 // La etiqueta del menu puede ser mas corta que el titulo de la seccion:
@@ -20,7 +21,10 @@ const enlaces = [
 -->
 <header class="barra">
   <nav class="mx-auto flex h-14 max-w-[var(--container-ficha)] items-center gap-4 px-6">
-    <a href="/" class="rotulo shrink-0 text-[1.0625rem]" style="color: var(--tinta);">Djasoft</a>
+    <a href="/" class="rotulo flex shrink-0 items-center gap-2 text-[1.0625rem]" style="color: var(--tinta);">
+      <Logo size={24} />
+      Djasoft
+    </a>
 
     <!-- En escritorio los enlaces viven sueltos en la barra; en movil los
          sirve el panel de la hamburguesa. -->
