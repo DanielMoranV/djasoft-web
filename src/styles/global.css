@@ -108,6 +108,9 @@
   --senal-txt: var(--color-senal-txt-claro);
   --linea: var(--color-linea-claro);
   --sobre-marca: var(--color-sobre-marca-claro);
+  --logo-marca: var(--color-marca-claro);
+  --logo-puente: #ffffff;
+  --logo-senal: var(--color-senal-claro);
 
   /*
     Superficie de las bandas a sangre, separada de --marca a proposito.
@@ -133,6 +136,11 @@
   /* Ritmo vertical en tres pesos. */
   --paso-seccion: 5rem;
   --paso-respiro: 8rem;
+
+  /* Movimiento: una curva y dos velocidades para que todo responda igual. */
+  --movimiento-suave: cubic-bezier(0.22, 0.65, 0.35, 1);
+  --movimiento-rapido: 180ms;
+  --movimiento-entrada: 620ms;
 }
 
 /*
@@ -160,6 +168,9 @@
     --senal-txt: var(--color-senal-txt-oscuro);
     --linea: var(--color-linea-oscuro);
     --sobre-marca: var(--color-sobre-marca-oscuro);
+    --logo-marca: var(--color-marca-oscuro);
+    --logo-puente: var(--color-papel-oscuro);
+    --logo-senal: var(--color-senal-oscuro);
     --banda: var(--color-banda-oscuro);
     color-scheme: dark;
   }
@@ -177,6 +188,9 @@
   --senal-txt: var(--color-senal-txt-oscuro);
   --linea: var(--color-linea-oscuro);
   --sobre-marca: var(--color-sobre-marca-oscuro);
+  --logo-marca: var(--color-marca-oscuro);
+  --logo-puente: var(--color-papel-oscuro);
+  --logo-senal: var(--color-senal-oscuro);
   --banda: var(--color-banda-oscuro);
   color-scheme: dark;
 }
@@ -215,6 +229,22 @@
 
   a {
     color: var(--senal-txt);
+  }
+
+  /*
+    Cursor de marca solo donde hay una accion. El cursor de lectura y el de
+    seleccion de texto se conservan: reemplazarlos en toda la pagina haria el
+    sitio mas llamativo, pero tambien menos predecible para el visitante.
+  */
+  @media (hover: hover) and (pointer: fine) {
+    a,
+    button,
+    summary,
+    label[for] {
+      cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 3v18l4.6-4.4 3.2 7.1 3.2-1.5-3.2-7.1H18Z' fill='%23f7f2e9' stroke='%2314202b' stroke-width='1.7' stroke-linejoin='round'/%3E%3Crect x='17' y='3' width='7' height='7' rx='1' fill='%23c8873a' stroke='%2314202b' stroke-width='1.5'/%3E%3C/svg%3E") 4 3,
+        pointer;
+    }
   }
 
   :focus-visible {
@@ -276,6 +306,230 @@
   background: color-mix(in srgb, var(--papel) 92%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--linea);
+}
+
+.marca-nav {
+  letter-spacing: -0.035em;
+}
+
+.marca-nav svg {
+  transition: transform var(--movimiento-rapido) var(--movimiento-suave);
+}
+
+.marca-nav:hover svg,
+.marca-nav:focus-visible svg {
+  transform: translateY(-1px) rotate(-2deg);
+}
+
+/* ------------------------------------------------------ firma de la portada */
+
+/*
+  El simbolo cuenta la idea central de la marca: un puente entre dos bloques,
+  lo que ya funciona y lo que viene. En vez de inventar una ilustracion para
+  el hero, se convierte ese activo propio en el segundo foco de la portada.
+*/
+.hero-marca {
+  display: grid;
+  gap: 3rem;
+}
+
+.hero-copia {
+  grid-row: 2;
+}
+
+.sello-djasoft {
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--tinta);
+}
+
+.sello-djasoft svg {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: none;
+}
+
+.sello-djasoft__texto .rotulo {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.sello-djasoft__texto p:last-child {
+  margin-top: 0.45rem;
+  color: var(--tinta2);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 64rem) {
+  .hero-marca {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    align-items: start;
+    gap: 4rem;
+  }
+
+  .hero-copia,
+  .sello-djasoft {
+    grid-row: 1;
+  }
+
+  .sello-djasoft {
+    display: block;
+    width: 100%;
+    padding: 1rem 0 1.5rem;
+  }
+
+  .sello-djasoft svg {
+    width: 11.5rem;
+    height: 11.5rem;
+  }
+
+  .sello-djasoft__texto {
+    margin-top: 1.5rem;
+  }
+
+  .sello-djasoft__texto .rotulo {
+    font-size: 2rem;
+  }
+}
+
+/* El cierre recupera el simbolo como marca de agua: se reconoce sin competir
+   con WhatsApp, que sigue siendo el unico control dominante de la banda. */
+.contacto {
+  position: relative;
+}
+
+.contacto__marca {
+  --logo-marca: var(--sobre-marca);
+  --logo-puente: var(--marca-honda);
+  --logo-senal: var(--senal-banda);
+  position: absolute;
+  right: -4rem;
+  bottom: -5rem;
+  width: 19rem;
+  height: 19rem;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------- movimiento */
+
+/*
+  Dos capas y nada mas:
+  1. La portada se compone al cargar, como una firma que se estampa.
+  2. Los bloques principales suben 16 px al entrar en el campo visual.
+
+  No hay parallax ni bucles. La pagina tiene que sentirse viva, no inquieta.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copia h1 {
+    animation: portada-entra var(--movimiento-entrada) var(--movimiento-suave) both;
+  }
+
+  .hero-copia > .prosa:first-of-type {
+    animation: portada-entra var(--movimiento-entrada) 100ms var(--movimiento-suave) both;
+  }
+
+  .hero-copia > .prosa:last-of-type {
+    animation: portada-entra var(--movimiento-entrada) 180ms var(--movimiento-suave) both;
+  }
+
+  .sello-djasoft {
+    animation: sello-entra 720ms 120ms var(--movimiento-suave) both;
+  }
+
+  .ficha {
+    transition:
+      border-color var(--movimiento-rapido) ease,
+      transform var(--movimiento-rapido) var(--movimiento-suave);
+  }
+
+  .ficha:hover {
+    border-color: var(--senal) !important;
+    transform: translateY(-3px);
+  }
+
+  .contacto a[class*='inline-flex'],
+  #servicios a[class*='inline-flex'],
+  .barra a[href='/#contacto'] {
+    transition:
+      transform var(--movimiento-rapido) var(--movimiento-suave),
+      filter var(--movimiento-rapido) ease;
+  }
+
+  .contacto a[class*='inline-flex']:hover,
+  #servicios a[class*='inline-flex']:hover,
+  .barra a[href='/#contacto']:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+  }
+
+  @supports (animation-timeline: view()) {
+    #resuelvo > div,
+    #servicios > div,
+    #clientes > div,
+    #productos > div,
+    .banda-logos > div,
+    #contacto > div {
+      animation: seccion-entra both var(--movimiento-suave);
+      animation-timeline: view();
+      animation-range: entry 5% cover 24%;
+    }
+
+    #sistemas li {
+      animation: fila-entra both var(--movimiento-suave);
+      animation-timeline: view();
+      animation-range: entry 0% cover 18%;
+    }
+  }
+}
+
+@keyframes portada-entra {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sello-entra {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes seccion-entra {
+  from {
+    opacity: 0.3;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fila-entra {
+  from {
+    opacity: 0.35;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @supports (animation-timeline: scroll()) {

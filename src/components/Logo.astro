@@ -7,27 +7,30 @@
 interface Props {
   size?: number;
   class?: string;
+  /** Los sellos grandes del hero y contacto ya tienen un texto equivalente al lado. */
+  decorative?: boolean;
 }
-const { size = 24, class: className } = Astro.props;
+const { size = 24, class: className, decorative = false } = Astro.props;
 ---
 
 <svg
   width={size}
   height={size}
   viewBox="0 0 32 32"
-  role="img"
-  aria-label="Djasoft"
+  role={decorative ? undefined : 'img'}
+  aria-label={decorative ? undefined : 'Djasoft'}
+  aria-hidden={decorative ? 'true' : undefined}
   class={className}
 >
-  <path fill="#1b4965" d="M3 2H15A14 14 0 0 1 15 30H3Z" />
+  <path fill="var(--logo-marca, #1b4965)" d="M3 2H15A14 14 0 0 1 15 30H3Z" />
   <path
     d="M10.5 19V16.5H20.5V14"
     fill="none"
-    stroke="#fff"
+    stroke="var(--logo-puente, #fff)"
     stroke-width="1.75"
     stroke-linecap="square"
     stroke-linejoin="miter"
   />
-  <rect x="7" y="19" width="7" height="7" rx="1" fill="#fff" />
-  <rect x="17" y="7" width="7" height="7" rx="1" fill="#c8873a" />
+  <rect x="7" y="19" width="7" height="7" rx="1" fill="var(--logo-puente, #fff)" />
+  <rect x="17" y="7" width="7" height="7" rx="1" fill="var(--logo-senal, #c8873a)" />
 </svg>

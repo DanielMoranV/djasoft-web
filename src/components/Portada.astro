@@ -3,6 +3,7 @@ import Ficha from './Ficha.astro';
 import BandaLogos from './BandaLogos.astro';
 import IndiceSistemas from './IndiceSistemas.astro';
 import Flecha from './Flecha.astro';
+import Logo from './Logo.astro';
 import { propios, paraClientes, productos, sectores } from '../data/productos';
 import { s } from '../textos';
 
@@ -31,13 +32,27 @@ const logo = (p: (typeof productos)[number]) => ({
      puntos ruidosos de la pagina, el otro es el indice. -->
 <section class="px-6" style="padding-top: var(--paso-seccion); padding-bottom: var(--paso-respiro);">
   <div class="mx-auto max-w-[var(--container-ficha)]">
-    <h1 class="max-w-[14ch]" style="font-size: var(--text-rotulo); line-height: 0.95;">
-      {s.heroTitulo}
-    </h1>
+    <div class="hero-marca">
+      <div class="hero-copia">
+        <h1 class="max-w-[14ch]" style="font-size: var(--text-rotulo); line-height: 0.95;">
+          {s.heroTitulo}
+        </h1>
 
-    <p class="prosa mt-10">{s.heroEntrada}</p>
+        <p class="prosa mt-10">{s.heroEntrada}</p>
 
-    <p class="prosa mt-6 font-semibold" style="color: var(--senal-txt);">{s.heroPrueba}</p>
+        <p class="prosa mt-6 font-semibold" style="color: var(--senal-txt);">{s.heroPrueba}</p>
+      </div>
+
+      <!-- El simbolo deja de ser un favicon ampliado: aqui funciona como sello
+           de procedencia. El texto es factual para no convertirlo en eslogan. -->
+      <aside class="sello-djasoft" aria-label="Djasoft, software de gestión desde Sullana, Piura">
+        <Logo size={184} decorative={true} />
+        <div class="sello-djasoft__texto">
+          <p class="rotulo">Djasoft</p>
+          <p>Software de gestión<br />desde Sullana, Piura.</p>
+        </div>
+      </aside>
+    </div>
 
     <!-- Las metricas dejan de ser tres bloques de cifra grande —el gesto de
          pitch que el resto del sitio rechaza— y pasan a una linea de datos. -->
@@ -157,10 +172,11 @@ const logo = (p: (typeof productos)[number]) => ({
 <!-- 7 · Contacto. Segunda y ultima banda a sangre, en azul profundo. -->
 <section
   id="contacto"
-  class="scroll-mt-20 px-6"
+  class="contacto scroll-mt-20 overflow-hidden px-6"
   style="background: var(--marca-honda); color: var(--sobre-marca); padding-block: var(--paso-respiro);"
 >
-  <div class="mx-auto max-w-[var(--container-corto)]">
+  <Logo size={304} decorative={true} class="contacto__marca" />
+  <div class="relative mx-auto max-w-[var(--container-corto)]">
     <p class="etiqueta" style="color: var(--senal-banda);">{s.contactoTitulo}</p>
     <p class="prosa mt-6" style="color: var(--sobre-marca);">{s.contactoEntrada}</p>
     <p class="mt-4 text-[0.9375rem]" style="color: color-mix(in srgb, var(--sobre-marca) 75%, transparent);">
