@@ -33,7 +33,6 @@ export const s = {
   indiceEtiqueta: 'sistemas en producción',
   indiceTitulo: 'Cada enlace abre el producto real, no una captura.',
   bandaClientes: 'Empresas que lo pagaron y lo siguen usando',
-  bandaProductos: 'Productos propios',
 
   navQueResuelvo: 'Qué resuelvo',
   /* Mas corta que el titulo de la seccion a proposito: «Por qué contratarme»
@@ -45,11 +44,10 @@ export const s = {
 
   heroTitulo: 'Software de gestión que ya está funcionando.',
   heroEntrada:
-    'Soy Daniel Morán Vílchez y desarrollo desde Ignacio Escudero, en Sullana, bajo la marca ' +
-    'Djasoft. He puesto a ' +
-    'funcionar sistemas en institutos, clínicas, distribuidoras, restaurantes y empresas de ' +
-    'energía solar: ERPs, planillas, facturación electrónica ante SUNAT, y automatización ' +
-    'alrededor de lo que ya usan, sin apagarlo.',
+    'Soy Daniel Morán Vílchez, responsable de Djasoft. Desarrollo software de gestión desde ' +
+    'Sullana para empresas que necesitan modernizar su operación sin detenerla. He puesto en ' +
+    'marcha ERPs, planillas, facturación electrónica y automatizaciones para educación, salud, ' +
+    'distribución, restaurantes y energía solar.',
   heroPrueba: 'Todo lo que hay debajo se puede abrir y probar ahora mismo.',
 
   metricaProductos: 'sistemas en producción, abribles ahora mismo',
@@ -58,42 +56,38 @@ export const s = {
 
   productosTitulo: 'Proyectos propios',
   productosEntrada:
-    'Cada uno nació de un problema real y lo resuelve de forma eficiente. Detrás hay un ' +
-    'estudio a fondo de la normativa peruana y del mercado al que sirve, y eso se nota en lo ' +
-    'que ahorra: horas administrativas que dejan de gastarse cada mes, y control real sobre ' +
-    'las ventas y los movimientos, al día y sin tener que pedírselo a nadie. Se contratan ' +
-    'por uso o se adquieren en propiedad. Cada enlace abre el producto real, no una captura.',
+    'Cuatro productos nacidos de operaciones concretas: inventario y ventas, restaurantes, ' +
+    'planillas y organización del trabajo. Se contratan por uso o se adquieren en propiedad. ' +
+    'Puede abrir cada uno y comprobar cómo funciona.',
 
-  clientesTitulo: 'Casos de éxito',
-  clientesEntrada:
-    'Ninguno pidió “un sistema”: pedían dejar de anotar la caja en papel, aparecer cuando ' +
-    'alguien busca su rubro, vender fuera del mostrador. Eso es lo que entregué, y todo ' +
+  clientesTitulo: 'Trabajo en producción',
+  clientesEntrada: 'Problemas concretos, soluciones que siguen funcionando.',
+  clientesDetalle:
+    'Pidieron dejar de anotar la caja en papel, administrar un catálogo, vender fuera del ' +
+    'mostrador o publicar cambios sin procesos manuales. Eso es lo que se entregó, y todo ' +
     'sigue en producción.',
 
   resuelvoTitulo: 'Qué resuelvo',
-  resuelvoEntrada: 'Tres cosas que no encontrarás en un software importado.',
+  resuelvoEntrada: 'Problemas de operación que un software genérico no suele resolver bien.',
 
   r1Titulo: 'Sistemas que funcionan y no hay que apagar',
   r1Texto:
-    'FoxPro fue y sigue siendo un referente: hay operaciones que llevan años sostenidas ' +
-    'sobre él, y eso no es deuda técnica, es la prueba de que funciona. No vengo a ' +
-    'apagarlo. Escribí un motor propio que lee y escribe sobre esas tablas mientras el ' +
-    'personal trabaja, bloqueando solo los bytes de cada registro: así se llevaron más de ' +
-    '500.000 registros históricos a reportes, web y análisis sin cerrar un día ni ' +
-    'cambiarle la rutina a nadie. El proceso que funciona se queda; se automatiza lo que ' +
-    'pasa alrededor.',
+    'Hay operaciones que llevan años funcionando sobre FoxPro y no necesitan empezar de ' +
+    'cero. Integro reportes, web y análisis alrededor del sistema actual, y traslado la ' +
+    'información sin detener el trabajo ni obligar al personal a cambiar su rutina. El ' +
+    'proceso que funciona se conserva; se automatiza lo que sucede alrededor.',
 
-  r2Titulo: 'Las reglas peruanas, que nadie más implementa',
+  r2Titulo: 'Normativa peruana dentro del sistema',
   r2Texto:
     'Facturación electrónica ante SUNAT, SIAGIE y MINEDU en educación, normativa de ' +
-    'SUSALUD en salud, RENIEC y ubigeo. Es la parte que un SaaS importado nunca resuelve ' +
-    'bien, y la que decide si el software sirve de verdad aquí.',
+    'SUSALUD en salud, RENIEC y ubigeo. Son reglas concretas que determinan si el software ' +
+    'sirve de verdad para una empresa peruana.',
 
   serviciosTitulo: 'Por qué contratarme',
   serviciosEntrada:
-    'Porque no llego con un producto debajo del brazo a ver dónde encaja. Estas son las ' +
-    'cuatro maneras en que puedo entrar en su operación, y ninguna empieza por apagar lo ' +
-    'que ya le funciona.',
+    'No intento encajar su empresa en un producto. Puedo poner en marcha una solución, ' +
+    'integrar lo que ya usa, incorporar inteligencia artificial o construir solo lo que ' +
+    'haga falta. Ninguna opción empieza por apagar lo que funciona.',
 
   sv1Titulo: 'Poner en marcha uno de mis productos',
   sv1Texto:
@@ -115,7 +109,7 @@ export const s = {
     'por usuario, o uno público que solo ve lo que usted decida enseñar. Los dos están ' +
     'funcionando hoy en empresas, y se pueden probar antes de contratar nada.',
 
-  serviciosLlamada: 'Cuénteme qué necesita y le digo cuál de las cuatro es',
+  serviciosLlamada: 'Cuénteme qué necesita y le diré por dónde empezar',
 
   sv4Titulo: 'Consultoría y desarrollo a medida',
   sv4Texto:
@@ -125,11 +119,10 @@ export const s = {
 
   r3Titulo: 'Inteligencia artificial dentro del producto',
   r3Texto:
-    'No como asistente de programación: como parte del sistema. En AlmaZen, un agente ' +
-    'conversacional consulta stock, ventas, márgenes y deuda con 29 herramientas, cada ' +
-    'una con su propio permiso. En Master Color, un chatbot de ventas atiende al público ' +
-    'sin ninguna herramienta, viendo solo el catálogo. Dos problemas distintos, dos ' +
-    'diseños opuestos a propósito.',
+    'La inteligencia artificial sirve cuando trabaja con datos reales y límites claros. ' +
+    'En AlmaZen consulta stock, ventas, márgenes y deuda según los permisos de cada usuario; ' +
+    'en Master Color responde únicamente sobre el catálogo público. Cada caso recibe la ' +
+    'solución que corresponde.',
 
   contactoTitulo: 'Hablemos',
   contactoEntrada:
@@ -140,7 +133,7 @@ export const s = {
   contactoCorreo: 'Correo',
   contactoUbicacion: 'Ignacio Escudero · Sullana — Piura, Perú',
   contactoTelefono: '948 860 381',
-  contactoWhatsapp: 'WhatsApp',
+  contactoWhatsapp: 'Conversar por WhatsApp',
   /*
     El ambito va en texto visible, no solo en los datos estructurados: Google
     ignora un lugar que solo aparece en el marcado, y para una busqueda local

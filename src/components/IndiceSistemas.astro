@@ -7,8 +7,8 @@
  * Y es lo unico del sitio donde se ve de golpe que hay ocho cosas abribles.
  *
  * Los datos salen de productos.ts, no escritos a mano: si se anade un
- * producto, entra aqui solo. La pila se recorta a tres piezas porque la fila
- * es un vistazo, no una ficha tecnica.
+ * producto, entra aqui solo. La portada muestra su funcion, no la pila
+ * tecnica; esa informacion queda en la ficha individual.
  */
 import { productos } from '../data/productos';
 import { s } from '../textos';
@@ -44,7 +44,7 @@ const sistemas = productos.filter((p) => p.url);
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 py-6 transition-colors md:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)_minmax(0,1fr)_auto] hover:bg-white/5 focus-visible:bg-white/5"
+              class="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 py-6 transition-colors md:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)_auto] hover:bg-white/5 focus-visible:bg-white/5"
               {/* Color explicito: sin esto la fila hereda la regla base
                   a { color: var(--senal-txt) }, que sobre esta banda da un
                   marron oscuro ilegible en modo claro (1.56:1). */}
@@ -61,12 +61,6 @@ const sistemas = productos.filter((p) => p.url);
                 style="color: color-mix(in srgb, var(--sobre-marca) 78%, transparent);"
               >
                 {p.es.que}
-              </span>
-              <span
-                class="hidden text-[0.8125rem] md:block md:justify-self-end"
-                style="color: color-mix(in srgb, var(--sobre-marca) 72%, transparent);"
-              >
-                {p.stack.slice(0, 3).join(' · ')}
               </span>
               <span
                 class="etiqueta col-start-2 row-start-1 flex items-center gap-1.5 justify-self-end transition-transform duration-200 group-hover:translate-x-1 md:col-auto md:row-auto"

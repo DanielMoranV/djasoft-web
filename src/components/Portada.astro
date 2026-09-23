@@ -72,7 +72,25 @@ const logo = (p: (typeof productos)[number]) => ({
   </div>
 </section>
 
-<!-- 2 · Que resuelvo. La unica seccion sin rejilla y sin borde: columna de
+<!-- 2 · Prueba antes que discurso: clientes y casos aparecen justo despues
+     de la promesa para responder pronto a la desconfianza del lector. -->
+<BandaLogos titulo={s.bandaClientes} logos={paraClientes.map(logo)} />
+
+<section id="clientes" class="scroll-mt-20 px-6" style="padding-block: var(--paso-seccion);">
+  <div class="mx-auto max-w-[var(--container-ficha)]">
+    <p class="etiqueta" style="color: var(--senal-txt);">{s.clientesTitulo}</p>
+    <h2 class="mt-3 max-w-[24ch]" style="font-size: var(--text-seccion); line-height: 1.02;">
+      {s.clientesEntrada}
+    </h2>
+    <p class="prosa mt-5">{s.clientesDetalle}</p>
+
+    <div class="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
+      {paraClientes.map((p) => <Ficha producto={p} />)}
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Que resuelvo. La unica seccion sin rejilla y sin borde: columna de
      prosa a 62ch. Aqui es donde la serif hace su trabajo. -->
 <section id="resuelvo" class="scroll-mt-20 px-6" style="padding-bottom: var(--paso-respiro);">
   <div class="mx-auto max-w-[var(--container-prosa)]">
@@ -97,7 +115,7 @@ const logo = (p: (typeof productos)[number]) => ({
   </div>
 </section>
 
-<!-- 3 · Por que contratarme. Cuatro filas, no tarjetas: tabular a proposito,
+<!-- 4 · Por que contratarme. Cuatro filas, no tarjetas: tabular a proposito,
      para contrastar con el bloque de prosa que viene justo antes. -->
 <section id="servicios" class="scroll-mt-20 px-6" style="padding-bottom: var(--paso-respiro);">
   <div class="mx-auto max-w-[var(--container-ficha)]">
@@ -136,28 +154,11 @@ const logo = (p: (typeof productos)[number]) => ({
   </div>
 </section>
 
-<!-- 4 · Casos de exito. Los logotipos salen de las fichas y se agrupan arriba. -->
-<BandaLogos titulo={s.bandaClientes} logos={paraClientes.map(logo)} />
-
-<section id="clientes" class="scroll-mt-20 px-6" style="padding-block: var(--paso-seccion);">
-  <div class="mx-auto max-w-[var(--container-ficha)]">
-    <p class="etiqueta" style="color: var(--senal-txt);">{s.clientesTitulo}</p>
-    <h2 class="mt-3 max-w-[24ch]" style="font-size: var(--text-seccion); line-height: 1.02;">
-      {s.clientesEntrada}
-    </h2>
-
-    <div class="mt-12 grid gap-x-10 gap-y-12 md:grid-cols-2">
-      {paraClientes.map((p) => <Ficha producto={p} />)}
-    </div>
-  </div>
-</section>
-
 <!-- 5 · El indice: el momento que ancla el recuerdo de la pagina. -->
 <IndiceSistemas />
 
-<!-- 6 · Proyectos propios, ya en papel y con la descripcion larga. -->
-<BandaLogos titulo={s.bandaProductos} logos={propios.map(logo)} />
-
+<!-- 6 · Proyectos propios. Sin una segunda banda de logos: el indice anterior
+     ya presenta los ocho sistemas y repetirlos retrasaba el contacto. -->
 <section id="productos" class="scroll-mt-20 px-6" style="padding-block: var(--paso-seccion);">
   <div class="mx-auto max-w-[var(--container-ficha)]">
     <p class="etiqueta" style="color: var(--senal-txt);">{s.productosTitulo}</p>
@@ -190,7 +191,7 @@ const logo = (p: (typeof productos)[number]) => ({
       class="etiqueta mt-10 inline-flex h-14 items-center gap-2 px-7"
       style="background: var(--color-senal-claro); color: var(--color-tinta-claro);"
     >
-      {s.contactoWhatsapp} {s.contactoTelefono}
+      {s.contactoWhatsapp}
       <Flecha />
     </a>
 
